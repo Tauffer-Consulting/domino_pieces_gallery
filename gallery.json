@@ -1,0 +1,12 @@
+{
+    "default_domino_pieces": {
+        "name": "Default Domino Pieces",
+        "url": "https://github.com/Tauffer-Consulting/default_domino_pieces",
+        "description": "Default Domino Pieces"
+    },
+    "openai_domino_pieces": {
+        "name": "OpenAI Domino Pieces",
+        "url": "https://github.com/Tauffer-Consulting/openai_domino_pieces",
+        "description": "OpenAI Domino Pieces"
+    }
+}
