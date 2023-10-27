@@ -2,5 +2,13 @@
     {
         "name": "default_domino_pieces",
 		"url": "https://github.com/Tauffer-Consulting/default_domino_pieces"
+    },
+    {
+        "name": "openai_domino_pieces",
+        "url": "https://github.com/Tauffer-Consulting/openai_domino_pieces"
+    },
+    {
+        "name": "social_media_domino_pieces",
+        "url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces"
     }
 ]
