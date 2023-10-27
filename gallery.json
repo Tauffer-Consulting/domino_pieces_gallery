@@ -1,7 +1,7 @@
 {
     "default_domino_pieces": {
-        "url": "https://github.com/Tauffer-Consulting/domino_pieces_gallery",
         "version": "0.4.2",
+        "url": "https://github.com/Tauffer-Consulting/default_domino_pieces",
         "pieces": {
             "CustomPythonPiece": {
                 "name": "CustomPythonPiece",
