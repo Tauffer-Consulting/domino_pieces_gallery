@@ -129,7 +129,6 @@ class GalleryGenerator:
 
 
 
-
 if __name__ == '__main__':
     generator = GalleryGenerator()
     generator.create_gallery_json(update_gallery=True)
