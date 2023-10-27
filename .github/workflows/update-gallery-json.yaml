@@ -1,10 +1,14 @@
 name: Update gallery JSON file
 on:
-  pull_request:
+  push:
     branches:
       - '*'
     paths:
       - repositories.json
+
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   build:
