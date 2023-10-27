@@ -2,6 +2,7 @@ import json
 import os
 from clients.github_rest_client import GithubRestClient
 import tomli
+from pathlib import Path
 
 
 class GalleryGenerator:
@@ -85,11 +86,20 @@ class GalleryGenerator:
                                             Defaults to True.
         """
 
-        with open("gallery.json", "r") as f:
-            current_gallery = json.load(f)
+        gallery_path = Path("gallery.json")
+        if gallery_path.exists():
+            with open("gallery.json", "r") as f:
+                current_gallery = json.load(f)
+        else:
+            current_gallery = {}
         
-        with open("repositories.json", "r") as f:
-            repositories = json.load(f)
+        repositories_path = Path("repositories.json")
+        
+        if repositories_path.exists():
+            with open("repositories.json", "r") as f:
+                repositories = json.load(f)
+        else:
+            repositories = []
 
         output_gallery = {}
         # Using set for validation, we can't have duplicate urls or names
@@ -126,6 +136,7 @@ class GalleryGenerator:
 
         with open("gallery.json", "w") as f:
             json.dump(output_gallery, f, indent=4)
+
 
 
 

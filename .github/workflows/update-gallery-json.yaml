@@ -37,8 +37,8 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          echo GIT_STATUS=$(git status -s)
-          git commit -a -m "Add changes"
+          GIT_STATUS=$(git status -s)
+          [[ ! -z "$GIT_STATUS" ]] && git add gallery.json && git commit -m "auto-generate-gallery" -a || echo "No changes to commit"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
