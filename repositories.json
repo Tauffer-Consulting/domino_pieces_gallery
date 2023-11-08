@@ -10,5 +10,9 @@
     {
         "name": "social_media_domino_pieces",
         "url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces"
+    },
+    {
+        "name": "news_domino_pieces",
+        "url": "https://github.com/Tauffer-Consulting/news_domino_pieces"
     }
 ]
