@@ -1,404 +1,90 @@
 {
     "default_domino_pieces": {
-        "version": "0.4.2",
+        "version": "0.5.0",
         "url": "https://github.com/Tauffer-Consulting/default_domino_pieces",
         "pieces": {
-            "CustomPythonPiece": {
-                "name": "CustomPythonPiece",
+            "DataConversionPiece": {
+                "name": "DataConversionPiece",
                 "dependency": {
                     "dockerfile": null,
                     "requirements_file": "requirements_0.txt"
                 },
                 "tags": [
-                    "python",
+                    "data",
+                    "conversion",
                     "default"
                 ],
                 "style": {
-                    "node_label": "Custom Python Piece",
+                    "node_label": "Data Conversion Piece",
                     "node_type": "default",
                     "node_style": {
                         "backgroundColor": "#b3cde8"
                     },
                     "useIcon": true,
-                    "icon_class_name": "fa-brands:python",
+                    "icon_class_name": "icon-park-outline:file-conversion",
                     "iconStyle": {
                         "cursor": "pointer"
                     }
                 },
-                "description": "Run your custom Python code.",
+                "description": "Convert data from one format to another",
                 "input_schema": {
-                    "title": "InputModel",
-                    "description": "CustomPythonPiece Input Model",
-                    "type": "object",
-                    "properties": {
-                        "input_args": {
-                            "title": "Input Args",
-                            "description": "Input arguments.",
-                            "default": [
-                                {
-                                    "kwarg_name": "kwarg_2",
-                                    "kwarg_value": ""
-                                },
-                                {
-                                    "kwarg_name": "kwarg_1",
-                                    "kwarg_value": ""
-                                }
-                            ],
-                            "from_upstream": "never",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/InputKwargsModel"
-                            }
-                        },
-                        "script": {
-                            "title": "Script",
-                            "description": "Python script.",
-                            "default": "# Do not modify the function definition line \ndef custom_function(kwarg_1, kwarg_2):\n    # Write your code here\n    print(f\"First argument: {kwarg_1}\")\n    print(f\"Second argument: {kwarg_2}\")\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"output_1\": \"this is a string\", \n        \"output_2\": 420\n    }\n",
-                            "widget": "codeeditor",
-                            "from_upstream": "never",
-                            "type": "string"
-                        },
-                        "output_args": {
-                            "title": "Output Args",
-                            "description": "Output arguments.",
-                            "default": [
-                                {
-                                    "name": "output_1",
-                                    "description": "An example string output",
-                                    "type": "string"
-                                },
-                                {
-                                    "name": "output_2",
-                                    "description": "An example integer output",
-                                    "type": "integer"
-                                }
-                            ],
-                            "from_upstream": "never",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/OutputModifierModel"
-                            }
-                        }
-                    },
-                    "definitions": {
-                        "InputKwargsModel": {
-                            "title": "InputKwargsModel",
-                            "type": "object",
-                            "properties": {
-                                "kwarg_name": {
-                                    "title": "Kwarg Name",
-                                    "description": "Argument name.",
-                                    "from_upstream": "never",
-                                    "type": "string"
-                                },
-                                "kwarg_value": {
-                                    "title": "Kwarg Value",
-                                    "description": "Argument value.",
-                                    "from_upstream": "always",
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "OutputModifierItemType": {
-                            "title": "OutputModifierItemType",
-                            "description": "OutputArgsType Enum",
+                    "$defs": {
+                        "DataFormatOption": {
                             "enum": [
-                                "string",
-                                "integer",
-                                "float",
-                                "boolean",
-                                "array"
+                                "csv",
+                                "json"
                             ],
+                            "title": "DataFormatOption",
                             "type": "string"
-                        },
-                        "OutputModifierModel": {
-                            "title": "OutputModifierModel",
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "title": "Name",
-                                    "description": "Name of the output argument.",
-                                    "from_upstream": "never",
-                                    "type": "string"
-                                },
-                                "description": {
-                                    "title": "Description",
-                                    "description": "Description of the output argument.",
-                                    "from_upstream": "never",
-                                    "type": "string"
-                                },
-                                "type": {
-                                    "description": "Type of the output argument.",
-                                    "default": "string",
-                                    "from_upstream": "never",
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/definitions/OutputModifierItemType"
-                                        }
-                                    ]
-                                }
-                            }
                         }
-                    }
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "CustomPythonPiece Output Model",
-                    "type": "object",
-                    "properties": {}
-                },
-                "secrets_schema": null,
-                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
-            },
-            "SleepPiece": {
-                "name": "SleepPiece",
-                "dependency": {
-                    "dockerfile": null,
-                    "requirements_file": "requirements_0.txt"
-                },
-                "tags": [
-                    "Sleep",
-                    "Default"
-                ],
-                "style": {
-                    "node_label": "Sleep Piece",
-                    "node_type": "default",
-                    "node_style": {
-                        "backgroundColor": "#b3cde8"
                     },
-                    "useIcon": true,
-                    "icon_class_name": "fa-solid:hourglass-start",
-                    "iconStyle": {
-                        "cursor": "pointer"
-                    }
-                },
-                "description": "A Piece that executes a Python sleep function for a user-defined duration",
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "Sleep Piece Input Model",
-                    "type": "object",
                     "properties": {
-                        "sleep_time": {
-                            "title": "Sleep Time",
-                            "description": "Number of seconds to sleep",
-                            "default": 1,
-                            "required": true,
-                            "type": "number"
-                        }
-                    }
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "Sleep Piece Output Model",
-                    "type": "object",
-                    "properties": {
-                        "message": {
-                            "title": "Message",
-                            "description": "Sleep piece executed",
-                            "default": "",
-                            "type": "string"
-                        }
-                    }
-                },
-                "secrets_schema": null,
-                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
-            },
-            "SimpleLogPiece": {
-                "name": "SimpleLogPiece",
-                "dependency": {
-                    "dockerfile": null,
-                    "requirements_file": "requirements_0.txt"
-                },
-                "tags": [
-                    "log",
-                    "default"
-                ],
-                "style": {
-                    "node_label": "Simple Log Piece",
-                    "node_type": "default",
-                    "node_style": {
-                        "backgroundColor": "#b3cde8"
-                    },
-                    "useIcon": true,
-                    "icon_class_name": "fa-solid:file-alt",
-                    "iconStyle": {
-                        "cursor": "pointer"
-                    }
-                },
-                "description": "A Piece that simply logs its input",
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "SimpleLogPiece Input Model",
-                    "type": "object",
-                    "properties": {
-                        "input_str": {
-                            "title": "Input Str",
-                            "description": "Input string to be logged.",
-                            "default": "default value",
+                        "input_data": {
+                            "description": "Input data to be converted. Can be a file path or data as string.",
+                            "title": "Input Data",
                             "type": "string"
                         },
-                        "input_int": {
-                            "title": "Input Int",
-                            "description": "Input integer to be logged.",
-                            "default": 10,
-                            "type": "integer"
-                        },
-                        "input_float": {
-                            "title": "Input Float",
-                            "description": "Input float to be logged.",
-                            "default": 10.5,
-                            "type": "number"
-                        },
-                        "input_bool": {
-                            "title": "Input Bool",
-                            "description": "Input boolean to be logged.",
-                            "default": false,
-                            "type": "boolean"
-                        },
-                        "input_enum": {
-                            "description": "Input enum to be logged.",
-                            "default": "option1",
+                        "input_data_format": {
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/InputEnum"
+                                    "$ref": "#/$defs/DataFormatOption"
                                 }
-                            ]
-                        },
-                        "input_date": {
-                            "title": "Input Date",
-                            "description": "Input date to be logged.",
-                            "default": "2023-01-01",
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "input_time": {
-                            "title": "Input Time",
-                            "description": "Input time to be logged.",
-                            "default": "16:20:00",
-                            "type": "string",
-                            "format": "time"
-                        },
-                        "input_datetime": {
-                            "title": "Input Datetime",
-                            "description": "Input datetime to be logged.",
-                            "default": "2023-01-01T16:20:00",
-                            "type": "string",
-                            "format": "date-time"
-                        },
-                        "input_array": {
-                            "title": "Input Array",
-                            "description": "Input array to be logged.",
-                            "default": [
-                                "default_1",
-                                "default_2",
-                                "default_3"
                             ],
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
+                            "default": "csv",
+                            "description": "Input data format to be converted."
                         },
-                        "input_code": {
-                            "title": "Input Code",
-                            "description": "Input code to be logged.",
-                            "default": "print('Hello world!')",
-                            "widget": "codeeditor",
-                            "type": "string"
+                        "output_data_format": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/DataFormatOption"
+                                }
+                            ],
+                            "default": "json",
+                            "description": "Output data format."
                         }
                     },
-                    "definitions": {
-                        "InputEnum": {
-                            "title": "InputEnum",
-                            "description": "An enumeration.",
-                            "enum": [
-                                "option1",
-                                "option2",
-                                "option3"
-                            ],
-                            "type": "string"
-                        }
-                    }
+                    "required": [
+                        "input_data"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
                 },
                 "output_schema": {
-                    "title": "OutputModel",
-                    "description": "SimpleLogPiece Output Model",
-                    "type": "object",
                     "properties": {
-                        "message": {
-                            "title": "Message",
-                            "description": "Output message to log.",
-                            "default": "",
-                            "type": "string"
-                        },
-                        "output_msg": {
-                            "title": "Output Msg",
-                            "description": "Value that was logged.",
-                            "type": "string"
-                        },
-                        "output_str": {
-                            "title": "Output Str",
-                            "description": "Output string to be logged.",
-                            "type": "string"
-                        },
-                        "output_int": {
-                            "title": "Output Int",
-                            "description": "Output integer to be logged.",
-                            "type": "integer"
-                        },
-                        "output_float": {
-                            "title": "Output Float",
-                            "description": "Output float to be logged.",
-                            "type": "number"
-                        },
-                        "output_bool": {
-                            "title": "Output Bool",
-                            "description": "Output boolean to be logged.",
-                            "type": "boolean"
-                        },
-                        "output_date": {
-                            "title": "Output Date",
-                            "description": "Output date to be logged.",
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "output_time": {
-                            "title": "Output Time",
-                            "description": "Output time to be logged.",
-                            "type": "string",
-                            "format": "time"
-                        },
-                        "output_datetime": {
-                            "title": "Output Datetime",
-                            "description": "Output datetime to be logged.",
-                            "type": "string",
-                            "format": "date-time"
-                        },
-                        "output_array": {
-                            "title": "Output Array",
-                            "description": "Output array to be logged.",
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        },
-                        "output_code": {
-                            "title": "Output Code",
-                            "description": "Input code to be logged.",
-                            "widget": "codeeditor",
+                        "output_file_path": {
+                            "description": "Path to the converted file.",
+                            "title": "Output File Path",
                             "type": "string"
                         }
                     },
                     "required": [
-                        "output_msg",
-                        "output_date",
-                        "output_time",
-                        "output_datetime",
-                        "output_array",
-                        "output_code"
-                    ]
+                        "output_file_path"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
                 },
                 "secrets_schema": null,
-                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SimpleLogPiece"
+                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/DataConversionPiece"
             },
             "GetDateTimePiece": {
                 "name": "GetDateTimePiece",
@@ -424,30 +110,8 @@
                 },
                 "description": "A Piece that gets current system date and time.",
                 "input_schema": {
-                    "title": "InputModel",
-                    "description": "GetDateTimePiece Input Model",
-                    "type": "object",
-                    "properties": {
-                        "use_timezone": {
-                            "title": "Use Timezone",
-                            "description": "Whether to use a timezone for the timestamp.",
-                            "default": false,
-                            "type": "boolean"
-                        },
-                        "timezone": {
-                            "description": "Timezone to use for timestamp.",
-                            "default": "(UTC+00) - UTC",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/TZOptions"
-                                }
-                            ]
-                        }
-                    },
-                    "definitions": {
+                    "$defs": {
                         "TZOptions": {
-                            "title": "TZOptions",
-                            "description": "An enumeration.",
                             "enum": [
                                 "(UTC-11) - Pacific/Pago_Pago",
                                 "(UTC-10) - US/Hawaii",
@@ -476,28 +140,50 @@
                                 "(UTC+13) - Pacific/Tongatapu",
                                 "(UTC+14) - Pacific/Kiritimati"
                             ],
+                            "title": "TZOptions",
                             "type": "string"
                         }
-                    }
+                    },
+                    "description": "GetDateTimePiece Input Model",
+                    "properties": {
+                        "use_timezone": {
+                            "default": false,
+                            "description": "Whether to use a timezone for the timestamp.",
+                            "title": "Use Timezone",
+                            "type": "boolean"
+                        },
+                        "timezone": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/TZOptions"
+                                }
+                            ],
+                            "default": "(UTC+00) - UTC",
+                            "description": "Timezone to use for timestamp."
+                        }
+                    },
+                    "title": "InputModel",
+                    "type": "object"
                 },
                 "output_schema": {
-                    "title": "OutputModel",
                     "description": "GetDateTimePiece Output Model",
-                    "type": "object",
                     "properties": {
                         "date": {
-                            "title": "Date",
                             "description": "Date of the timestamp, in ISO format.",
+                            "format": "date",
+                            "title": "Date",
                             "type": "string"
                         },
                         "time": {
-                            "title": "Time",
                             "description": "Time of the timestamp, in ISO format.",
+                            "format": "time",
+                            "title": "Time",
                             "type": "string"
                         },
                         "datetime": {
-                            "title": "Datetime",
                             "description": "Datetime of the timestamp, in ISO format.",
+                            "format": "date-time",
+                            "title": "Datetime",
                             "type": "string"
                         }
                     },
@@ -505,17 +191,715 @@
                         "date",
                         "time",
                         "datetime"
-                    ]
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
                 },
                 "secrets_schema": null,
                 "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/GetDateTimePiece"
+            },
+            "CustomPythonPiece": {
+                "name": "CustomPythonPiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": "requirements_0.txt"
+                },
+                "tags": [
+                    "python",
+                    "default"
+                ],
+                "style": {
+                    "node_label": "Custom Python Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#b3cde8"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-brands:python",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "Run your custom Python code.",
+                "input_schema": {
+                    "$defs": {
+                        "InputKwargsModel": {
+                            "properties": {
+                                "kwarg_name": {
+                                    "default": null,
+                                    "description": "Argument name.",
+                                    "from_upstream": "never",
+                                    "title": "Kwarg Name",
+                                    "type": "string"
+                                },
+                                "kwarg_value": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "items": {},
+                                            "type": "array"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "type": "object"
+                                        }
+                                    ],
+                                    "default": null,
+                                    "description": "Argument value.",
+                                    "from_upstream": "always",
+                                    "title": "Kwarg Value"
+                                }
+                            },
+                            "title": "InputKwargsModel",
+                            "type": "object"
+                        },
+                        "OutputModifierItemType": {
+                            "description": "OutputArgsType Enum",
+                            "enum": [
+                                "string",
+                                "integer",
+                                "float",
+                                "boolean",
+                                "array"
+                            ],
+                            "title": "OutputModifierItemType",
+                            "type": "string"
+                        },
+                        "OutputModifierModel": {
+                            "properties": {
+                                "name": {
+                                    "default": null,
+                                    "description": "Name of the output argument.",
+                                    "from_upstream": "never",
+                                    "title": "Name",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "default": null,
+                                    "description": "Description of the output argument.",
+                                    "from_upstream": "never",
+                                    "title": "Description",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/$defs/OutputModifierItemType"
+                                        }
+                                    ],
+                                    "default": "string",
+                                    "description": "Type of the output argument.",
+                                    "from_upstream": "never"
+                                }
+                            },
+                            "title": "OutputModifierModel",
+                            "type": "object"
+                        }
+                    },
+                    "description": "CustomPythonPiece Input Model",
+                    "properties": {
+                        "input_args": {
+                            "default": [
+                                {
+                                    "kwarg_name": "kwarg_2",
+                                    "kwarg_value": ""
+                                },
+                                {
+                                    "kwarg_name": "kwarg_1",
+                                    "kwarg_value": ""
+                                }
+                            ],
+                            "description": "Input arguments.",
+                            "from_upstream": "never",
+                            "items": {
+                                "$ref": "#/$defs/InputKwargsModel"
+                            },
+                            "title": "Input Args",
+                            "type": "array"
+                        },
+                        "script": {
+                            "default": "# Do not modify the function definition line \ndef custom_function(kwarg_1, kwarg_2):\n    # Write your code here\n    print(f\"First argument: {kwarg_1}\")\n    print(f\"Second argument: {kwarg_2}\")\n\n    # Return the output of the function as an object,\n    # Matching the Output Args defined in the Form below\n    return {\n        \"output_1\": \"this is a string\", \n        \"output_2\": 420\n    }\n",
+                            "description": "Python script.",
+                            "from_upstream": "never",
+                            "title": "Script",
+                            "type": "string",
+                            "widget": "codeeditor"
+                        },
+                        "output_args": {
+                            "default": [
+                                {
+                                    "description": "An example string output",
+                                    "name": "output_1",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "An example integer output",
+                                    "name": "output_2",
+                                    "type": "integer"
+                                }
+                            ],
+                            "description": "Output arguments.",
+                            "from_upstream": "never",
+                            "items": {
+                                "$ref": "#/$defs/OutputModifierModel"
+                            },
+                            "title": "Output Args",
+                            "type": "array"
+                        }
+                    },
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "additionalProperties": true,
+                    "description": "CustomPythonPiece Output Model",
+                    "properties": {},
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": null,
+                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/CustomPythonPiece"
+            },
+            "SleepPiece": {
+                "name": "SleepPiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": "requirements_0.txt"
+                },
+                "tags": [
+                    "Sleep",
+                    "Default"
+                ],
+                "style": {
+                    "node_label": "Sleep Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#b3cde8"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-solid:hourglass-start",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "A Piece that executes a Python sleep function for a user-defined duration",
+                "input_schema": {
+                    "description": "Sleep Piece Input Model",
+                    "properties": {
+                        "sleep_time": {
+                            "default": 1,
+                            "description": "Number of seconds to sleep",
+                            "required": true,
+                            "title": "Sleep Time",
+                            "type": "number"
+                        }
+                    },
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "description": "Sleep Piece Output Model",
+                    "properties": {
+                        "message": {
+                            "default": "",
+                            "description": "Sleep piece executed",
+                            "title": "Message",
+                            "type": "string"
+                        }
+                    },
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": null,
+                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SleepPiece"
+            },
+            "SaveImagePiece": {
+                "name": "SaveImagePiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": "requirements_0.txt"
+                },
+                "tags": [
+                    "image",
+                    "default"
+                ],
+                "style": {
+                    "node_label": "Save Image Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#b3cde8"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "material-symbols:image-outline",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "Save base64 as image file to results folder.",
+                "input_schema": {
+                    "properties": {
+                        "base64_data": {
+                            "description": "Input data to be saved as image.",
+                            "title": "Base64 Data",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "base64_data"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "properties": {
+                        "output_image_path": {
+                            "description": "Output file path of the saved image.",
+                            "title": "Output Image Path",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "output_image_path"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": null,
+                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SaveImagePiece"
+            },
+            "SimpleLogPiece": {
+                "name": "SimpleLogPiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": "requirements_0.txt"
+                },
+                "tags": [
+                    "log",
+                    "default"
+                ],
+                "style": {
+                    "node_label": "Simple Log Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#b3cde8"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-solid:file-alt",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "A Piece that simply logs its input",
+                "input_schema": {
+                    "$defs": {
+                        "InputEnum": {
+                            "enum": [
+                                "option1",
+                                "option2",
+                                "option3"
+                            ],
+                            "title": "InputEnum",
+                            "type": "string"
+                        }
+                    },
+                    "description": "SimpleLogPiece Input Model",
+                    "properties": {
+                        "input_str": {
+                            "default": "default value",
+                            "description": "Input string to be logged.",
+                            "title": "Input Str",
+                            "type": "string"
+                        },
+                        "input_int": {
+                            "default": 10,
+                            "description": "Input integer to be logged.",
+                            "title": "Input Int",
+                            "type": "integer"
+                        },
+                        "input_float": {
+                            "default": 10.5,
+                            "description": "Input float to be logged.",
+                            "title": "Input Float",
+                            "type": "number"
+                        },
+                        "input_bool": {
+                            "default": false,
+                            "description": "Input boolean to be logged.",
+                            "title": "Input Bool",
+                            "type": "boolean"
+                        },
+                        "input_enum": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/InputEnum"
+                                }
+                            ],
+                            "default": "option1",
+                            "description": "Input enum to be logged."
+                        },
+                        "input_date": {
+                            "default": "2023-01-01",
+                            "description": "Input date to be logged.",
+                            "format": "date",
+                            "title": "Input Date",
+                            "type": "string"
+                        },
+                        "input_time": {
+                            "default": "16:20:00",
+                            "description": "Input time to be logged.",
+                            "format": "time",
+                            "title": "Input Time",
+                            "type": "string"
+                        },
+                        "input_datetime": {
+                            "default": "2023-01-01T16:20:00",
+                            "description": "Input datetime to be logged.",
+                            "format": "date-time",
+                            "title": "Input Datetime",
+                            "type": "string"
+                        },
+                        "input_array": {
+                            "default": [
+                                "default_1",
+                                "default_2",
+                                "default_3"
+                            ],
+                            "description": "Input array to be logged.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Input Array",
+                            "type": "array"
+                        },
+                        "input_code": {
+                            "default": "print('Hello world!')",
+                            "description": "Input code to be logged.",
+                            "title": "Input Code",
+                            "type": "string",
+                            "widget": "codeeditor"
+                        }
+                    },
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "description": "SimpleLogPiece Output Model",
+                    "properties": {
+                        "message": {
+                            "default": "",
+                            "description": "Output message to log.",
+                            "title": "Message",
+                            "type": "string"
+                        },
+                        "output_msg": {
+                            "description": "Value that was logged.",
+                            "title": "Output Msg",
+                            "type": "string"
+                        },
+                        "output_str": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Output string to be logged.",
+                            "title": "Output Str"
+                        },
+                        "output_int": {
+                            "anyOf": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Output integer to be logged.",
+                            "title": "Output Int"
+                        },
+                        "output_float": {
+                            "anyOf": [
+                                {
+                                    "type": "number"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Output float to be logged.",
+                            "title": "Output Float"
+                        },
+                        "output_bool": {
+                            "anyOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Output boolean to be logged.",
+                            "title": "Output Bool"
+                        },
+                        "output_date": {
+                            "description": "Output date to be logged.",
+                            "format": "date",
+                            "title": "Output Date",
+                            "type": "string"
+                        },
+                        "output_time": {
+                            "description": "Output time to be logged.",
+                            "format": "time",
+                            "title": "Output Time",
+                            "type": "string"
+                        },
+                        "output_datetime": {
+                            "description": "Output datetime to be logged.",
+                            "format": "date-time",
+                            "title": "Output Datetime",
+                            "type": "string"
+                        },
+                        "output_array": {
+                            "description": "Output array to be logged.",
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Output Array",
+                            "type": "array"
+                        },
+                        "output_code": {
+                            "description": "Input code to be logged.",
+                            "title": "Output Code",
+                            "type": "string",
+                            "widget": "codeeditor"
+                        }
+                    },
+                    "required": [
+                        "output_msg",
+                        "output_str",
+                        "output_int",
+                        "output_float",
+                        "output_bool",
+                        "output_date",
+                        "output_time",
+                        "output_datetime",
+                        "output_array",
+                        "output_code"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": null,
+                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/SimpleLogPiece"
+            },
+            "ApiFetchPiece": {
+                "name": "ApiFetchPiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": "requirements_0.txt"
+                },
+                "tags": [
+                    "data",
+                    "api",
+                    "default"
+                ],
+                "style": {
+                    "node_label": "API Fetch Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#b3cde8"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "mdi:api",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "This piece fetches data from an API",
+                "input_schema": {
+                    "properties": {
+                        "api_url": {
+                            "description": "Input data to be converted. Can be a file path or data as string.",
+                            "title": "Api Url",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "api_url"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "properties": {
+                        "base64_bytes_data": {
+                            "description": "Output data as base64 encoded string.",
+                            "title": "Base64 Bytes Data",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "base64_bytes_data"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": null,
+                "source_url": "https://github.com/Tauffer-Consulting/default_domino_pieces/tree/main/pieces/ApiFetchPiece"
             }
         }
     },
     "openai_domino_pieces": {
-        "version": "0.4.5",
+        "version": "0.5.0",
         "url": "https://github.com/Tauffer-Consulting/openai_domino_pieces",
         "pieces": {
+            "PromptCreatorForImageGeneratorPiece": {
+                "name": "PromptCreatorForImageGeneratorPiece",
+                "dependency": {
+                    "dockerfile": "Dockerfile_01",
+                    "requirements_file": null
+                },
+                "tags": [],
+                "style": {
+                    "node_label": "Prompt Creator for Image Generator AI",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#ebebeb"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-solid:terminal",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "This Piece utilizes OpenAI to generates a prompt to pass to an image generator AI.",
+                "input_schema": {
+                    "$defs": {
+                        "LLMModelType": {
+                            "description": "OpenAI model type",
+                            "enum": [
+                                "gpt-3.5-turbo",
+                                "gpt-4",
+                                "text-ada-001",
+                                "text-babbage-001",
+                                "text-curie-001",
+                                "text-davinci-003"
+                            ],
+                            "title": "LLMModelType",
+                            "type": "string"
+                        },
+                        "OutputTypeType": {
+                            "description": "Output type",
+                            "enum": [
+                                "file",
+                                "string",
+                                "file_and_string"
+                            ],
+                            "title": "OutputTypeType",
+                            "type": "string"
+                        }
+                    },
+                    "description": "PromptCreatorForImageGeneratorPiece input model",
+                    "properties": {
+                        "context": {
+                            "description": "The context to generate an image from",
+                            "title": "Context",
+                            "type": "string"
+                        },
+                        "art_style": {
+                            "default": "You know many art styles, so you always vary a lot on your suggestions!",
+                            "description": "The art style to generate an image from. Your imagination is the limit!",
+                            "title": "Art Style",
+                            "type": "string"
+                        },
+                        "output_type": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OutputTypeType"
+                                }
+                            ],
+                            "default": "string",
+                            "description": "The type of output to return"
+                        },
+                        "openai_model": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/LLMModelType"
+                                }
+                            ],
+                            "default": "gpt-3.5-turbo",
+                            "description": "OpenAI model to bring your character to life"
+                        },
+                        "completion_max_tokens": {
+                            "default": 350,
+                            "description": "The maximum number of tokens to generate the prompt.",
+                            "title": "Completion Max Tokens",
+                            "type": "integer"
+                        },
+                        "temperature": {
+                            "default": 0.7,
+                            "description": "Temperature of the model, between 0 (more precise) and 1 (more creative)",
+                            "exclusiveMinimum": 0.0,
+                            "maximum": 1.0,
+                            "title": "Temperature",
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "context"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "description": "PromptCreatorForImageGeneratorPiece output model",
+                    "properties": {
+                        "generated_prompt_string": {
+                            "default": null,
+                            "description": "The generated prompt to pass to an image generator AI",
+                            "title": "Generated Prompt String",
+                            "type": "string"
+                        },
+                        "generated_prompt_file_path": {
+                            "default": null,
+                            "description": "The path to the generated prompt, in .txt format",
+                            "title": "Generated Prompt File Path",
+                            "type": "string"
+                        }
+                    },
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": {
+                    "description": "PromptCreatorForImageGeneratorPiece secrets model",
+                    "properties": {
+                        "OPENAI_API_KEY": {
+                            "description": "Your OpenAI API key",
+                            "title": "Openai Api Key",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "OPENAI_API_KEY"
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
+                },
+                "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/PromptCreatorForImageGeneratorPiece"
+            },
             "TextGeneratorPiece": {
                 "name": "TextGeneratorPiece",
                 "dependency": {
@@ -540,98 +924,30 @@
                 },
                 "description": "This Piece allows you to create a custom prompt with your own arguments and send it to OpenAI for text generation.",
                 "input_schema": {
-                    "title": "InputModel",
-                    "description": "TextGeneratorPiece Input model",
-                    "type": "object",
-                    "properties": {
-                        "template": {
-                            "title": "Template",
-                            "description": "Compose a prompt template using the {arg_name} notation to insert arguments.",
-                            "default": "What is the capital city of {country}?",
-                            "type": "string"
-                        },
-                        "prompt_args": {
-                            "title": "Prompt Args",
-                            "description": "List of arguments to insert into the prompt.",
-                            "default": [
-                                {
-                                    "arg_name": "country",
-                                    "arg_value": "Brazil"
-                                }
-                            ],
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/InnerArgModel"
-                            }
-                        },
-                        "output_type": {
-                            "description": "The type of output to return.",
-                            "default": "string",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/OutputTypeType"
-                                }
-                            ]
-                        },
-                        "openai_model": {
-                            "description": "OpenAI model name.",
-                            "default": "gpt-3.5-turbo",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/LLMModelType"
-                                }
-                            ]
-                        },
-                        "completion_max_tokens": {
-                            "title": "Completion Max Tokens",
-                            "description": "The maximum number of tokens in the generated text.",
-                            "default": 500,
-                            "type": "integer"
-                        },
-                        "temperature": {
-                            "title": "Temperature",
-                            "description": "Temperature of the model, between 0 (more precise) and 1 (more creative).",
-                            "default": 0.3,
-                            "exclusiveMinimum": 0,
-                            "exclusiveMaximum": 1,
-                            "type": "number"
-                        }
-                    },
-                    "definitions": {
+                    "$defs": {
                         "InnerArgModel": {
-                            "title": "InnerArgModel",
                             "description": "Inner argument model to use in the prompt args",
-                            "type": "object",
                             "properties": {
                                 "arg_name": {
-                                    "title": "Arg Name",
                                     "description": "Name of the prompt argument.",
                                     "from_upstream": "never",
+                                    "title": "Arg Name",
                                     "type": "string"
                                 },
                                 "arg_value": {
-                                    "title": "Arg Value",
                                     "description": "Value of the prompt argument.",
+                                    "title": "Arg Value",
                                     "type": "string"
                                 }
                             },
                             "required": [
                                 "arg_name",
                                 "arg_value"
-                            ]
-                        },
-                        "OutputTypeType": {
-                            "title": "OutputTypeType",
-                            "description": "Output type for the generated text",
-                            "enum": [
-                                "file",
-                                "string",
-                                "file_and_string"
                             ],
-                            "type": "string"
+                            "title": "InnerArgModel",
+                            "type": "object"
                         },
                         "LLMModelType": {
-                            "title": "LLMModelType",
                             "description": "OpenAI model type",
                             "enum": [
                                 "gpt-3.5-turbo",
@@ -641,43 +957,391 @@
                                 "text-curie-001",
                                 "text-davinci-003"
                             ],
+                            "title": "LLMModelType",
+                            "type": "string"
+                        },
+                        "OutputTypeType": {
+                            "description": "Output type for the generated text",
+                            "enum": [
+                                "file",
+                                "string",
+                                "file_and_string"
+                            ],
+                            "title": "OutputTypeType",
                             "type": "string"
                         }
-                    }
+                    },
+                    "description": "TextGeneratorPiece Input model",
+                    "properties": {
+                        "template": {
+                            "default": "What is the capital city of {country}?",
+                            "description": "Compose a prompt template using the {arg_name} notation to insert arguments.",
+                            "title": "Template",
+                            "type": "string"
+                        },
+                        "prompt_args": {
+                            "default": [
+                                {
+                                    "arg_name": "country",
+                                    "arg_value": "Brazil"
+                                }
+                            ],
+                            "description": "List of arguments to insert into the prompt.",
+                            "items": {
+                                "$ref": "#/$defs/InnerArgModel"
+                            },
+                            "title": "Prompt Args",
+                            "type": "array"
+                        },
+                        "output_type": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OutputTypeType"
+                                }
+                            ],
+                            "default": "string",
+                            "description": "The type of output to return."
+                        },
+                        "openai_model": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/LLMModelType"
+                                }
+                            ],
+                            "default": "gpt-3.5-turbo",
+                            "description": "OpenAI model name."
+                        },
+                        "completion_max_tokens": {
+                            "default": 500,
+                            "description": "The maximum number of tokens in the generated text.",
+                            "title": "Completion Max Tokens",
+                            "type": "integer"
+                        },
+                        "temperature": {
+                            "default": 0.3,
+                            "description": "Temperature of the model, between 0 (more precise) and 1 (more creative).",
+                            "exclusiveMaximum": 1.0,
+                            "exclusiveMinimum": 0.0,
+                            "title": "Temperature",
+                            "type": "number"
+                        }
+                    },
+                    "title": "InputModel",
+                    "type": "object"
                 },
                 "output_schema": {
-                    "title": "OutputModel",
                     "description": "TextGeneratorPiece Output model",
-                    "type": "object",
                     "properties": {
                         "string_generated_text": {
-                            "title": "String Generated Text",
+                            "default": null,
                             "description": "The generated text as a string",
+                            "title": "String Generated Text",
                             "type": "string"
                         },
                         "file_path_generated_text": {
-                            "title": "File Path Generated Text",
+                            "default": null,
                             "description": "The path to text file containing generated text",
+                            "title": "File Path Generated Text",
                             "type": "string"
                         }
-                    }
+                    },
+                    "title": "OutputModel",
+                    "type": "object"
                 },
                 "secrets_schema": {
-                    "title": "SecretsModel",
                     "description": "TextGeneratorPiece Secrets model",
-                    "type": "object",
                     "properties": {
                         "OPENAI_API_KEY": {
-                            "title": "Openai Api Key",
                             "description": "Your OpenAI API key",
+                            "title": "Openai Api Key",
                             "type": "string"
                         }
                     },
                     "required": [
                         "OPENAI_API_KEY"
-                    ]
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
                 },
                 "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/TextGeneratorPiece"
+            },
+            "ImageGeneratorPiece": {
+                "name": "ImageGeneratorPiece",
+                "dependency": {
+                    "dockerfile": "Dockerfile_01",
+                    "requirements_file": null
+                },
+                "tags": [],
+                "style": {
+                    "node_label": "DALL-E Image Generator",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#ebebeb"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-solid:image",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "This Piece utilizes DALL-E, an OpenAI model that generates images based on a prompt.",
+                "input_schema": {
+                    "$defs": {
+                        "ImageFormat": {
+                            "description": "Image format to return",
+                            "enum": [
+                                "url",
+                                "image_png",
+                                "base64_string"
+                            ],
+                            "title": "ImageFormat",
+                            "type": "string"
+                        },
+                        "ImageSize": {
+                            "description": "Image size to generate",
+                            "enum": [
+                                "1024x1024",
+                                "512x512",
+                                "256x256"
+                            ],
+                            "title": "ImageSize",
+                            "type": "string"
+                        },
+                        "OutputTypeType": {
+                            "description": "Output type for the result text",
+                            "enum": [
+                                "file",
+                                "string",
+                                "file_and_string"
+                            ],
+                            "title": "OutputTypeType",
+                            "type": "string"
+                        }
+                    },
+                    "description": "ImageGeneratorPiece input model",
+                    "properties": {
+                        "prompt": {
+                            "description": "A text description of the desired image",
+                            "title": "Prompt",
+                            "type": "string"
+                        },
+                        "size": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/ImageSize"
+                                }
+                            ],
+                            "default": "1024x1024",
+                            "description": "The size of the generated images"
+                        },
+                        "image_format": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/ImageFormat"
+                                }
+                            ],
+                            "default": "url",
+                            "description": "The format in which the generated image is returned"
+                        },
+                        "output_type": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OutputTypeType"
+                                }
+                            ],
+                            "default": "string",
+                            "description": "The type of the output. Attention: if Response Format equals to image_png, then Output Type must be file type."
+                        }
+                    },
+                    "required": [
+                        "prompt"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "description": "ImageGeneratorPiece output model",
+                    "properties": {
+                        "output_string": {
+                            "default": null,
+                            "description": "The generated image as string",
+                            "title": "Output String",
+                            "type": "string"
+                        },
+                        "output_file_path": {
+                            "default": null,
+                            "description": "Path to the generated image",
+                            "title": "Output File Path",
+                            "type": "string"
+                        }
+                    },
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": {
+                    "description": "ImageGeneratorPiece secrets model",
+                    "properties": {
+                        "OPENAI_API_KEY": {
+                            "description": "Your OpenAI API key",
+                            "title": "Openai Api Key",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "OPENAI_API_KEY"
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
+                },
+                "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/ImageGeneratorPiece"
+            },
+            "InformationExtractionPiece": {
+                "name": "InformationExtractionPiece",
+                "dependency": {
+                    "dockerfile": "Dockerfile_01",
+                    "requirements_file": null
+                },
+                "tags": [
+                    "text",
+                    "information extraction",
+                    "openai"
+                ],
+                "style": {
+                    "node_label": "Information Extraction",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#ebebeb"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-solid:align-right",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "Extracts user-defined information from the input text.",
+                "input_schema": {
+                    "$defs": {
+                        "ExtractItemType": {
+                            "description": "OutputArgsType Enum",
+                            "enum": [
+                                "string",
+                                "integer",
+                                "float",
+                                "boolean"
+                            ],
+                            "title": "ExtractItemType",
+                            "type": "string"
+                        },
+                        "ExtractItemsModel": {
+                            "properties": {
+                                "name": {
+                                    "description": "Name of the output argument.",
+                                    "from_upstream": "never",
+                                    "title": "Name",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "Description of the output argument.",
+                                    "from_upstream": "never",
+                                    "title": "Description",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/$defs/ExtractItemType"
+                                        }
+                                    ],
+                                    "default": "string",
+                                    "description": "Type of the output argument.",
+                                    "from_upstream": "never"
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "description"
+                            ],
+                            "title": "ExtractItemsModel",
+                            "type": "object"
+                        },
+                        "LLMModelType": {
+                            "description": "OpenAI model type",
+                            "enum": [
+                                "gpt-3.5-turbo-0613",
+                                "gpt-4"
+                            ],
+                            "title": "LLMModelType",
+                            "type": "string"
+                        }
+                    },
+                    "description": "InformationExtractionPiece Input model",
+                    "properties": {
+                        "input_text": {
+                            "description": "Source text from where information should be extracted.",
+                            "from_upstream": "always",
+                            "title": "Input Text",
+                            "type": "string"
+                        },
+                        "openai_model": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/LLMModelType"
+                                }
+                            ],
+                            "default": "gpt-3.5-turbo-0613",
+                            "description": "OpenAI model name to use for information extraction."
+                        },
+                        "extract_items": {
+                            "default": [
+                                {
+                                    "description": "Name of the person.",
+                                    "name": "name",
+                                    "type": "string"
+                                },
+                                {
+                                    "description": "Age of the person.",
+                                    "name": "age",
+                                    "type": "integer"
+                                }
+                            ],
+                            "description": "Information items to be extracted from source text.",
+                            "from_upstream": "never",
+                            "items": {
+                                "$ref": "#/$defs/ExtractItemsModel"
+                            },
+                            "title": "Extract Items",
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "input_text"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "additionalProperties": true,
+                    "description": "InformationExtractionPiece Output Model",
+                    "properties": {},
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": {
+                    "description": "InformationExtractionPiece Secrets model",
+                    "properties": {
+                        "OPENAI_API_KEY": {
+                            "description": "Your OpenAI API key.",
+                            "title": "Openai Api Key",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "OPENAI_API_KEY"
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
+                },
+                "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/InformationExtractionPiece"
             },
             "TextSummarizerPiece": {
                 "name": "TextSummarizerPiece",
@@ -704,384 +1368,142 @@
                 },
                 "description": "This Piece runs a text summarizer using OpenAI API.",
                 "input_schema": {
-                    "title": "InputModel",
-                    "description": "TextSummarizerPiece Input model",
-                    "type": "object",
-                    "properties": {
-                        "text": {
-                            "title": "Text",
-                            "description": "Text to summarize",
-                            "required": false,
+                    "$defs": {
+                        "LLMModelType": {
+                            "description": "OpenAI model type",
+                            "enum": [
+                                "gpt-3.5-turbo",
+                                "gpt-4",
+                                "text-ada-001",
+                                "text-babbage-001",
+                                "text-curie-001",
+                                "text-davinci-003"
+                            ],
+                            "title": "LLMModelType",
                             "type": "string"
                         },
-                        "text_file_path": {
-                            "title": "Text File Path",
-                            "description": "Use it only if not using text field. File path to the text to summarize",
-                            "required": false,
-                            "type": "string"
-                        },
-                        "output_type": {
-                            "description": "The type of output to return",
-                            "default": "string",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/OutputTypeType"
-                                }
-                            ]
-                        },
-                        "openai_model": {
-                            "description": "OpenAI model name to use for summarization",
-                            "default": "gpt-3.5-turbo",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/LLMModelType"
-                                }
-                            ]
-                        },
-                        "chunk_size": {
-                            "title": "Chunk Size",
-                            "description": "Chunk size, measured in tokens, of each pre-summary chunk",
-                            "default": 1000,
-                            "type": "integer"
-                        },
-                        "chunk_overlap_rate": {
-                            "title": "Chunk Overlap Rate",
-                            "description": "The percentage of overlap between each chunk",
-                            "default": 0.2,
-                            "type": "number"
-                        },
-                        "completion_max_tokens": {
-                            "title": "Completion Max Tokens",
-                            "description": "The maximum number of tokens to generate in the summary.",
-                            "default": 500,
-                            "type": "integer"
-                        },
-                        "temperature": {
-                            "title": "Temperature",
-                            "description": "Temperature of the model, between 0 (more precise) and 1 (more creative)",
-                            "default": 0.2,
-                            "type": "number"
-                        }
-                    },
-                    "definitions": {
                         "OutputTypeType": {
-                            "title": "OutputTypeType",
                             "description": "Output type for the completion result",
                             "enum": [
                                 "file",
                                 "string",
                                 "file_and_string"
                             ],
-                            "type": "string"
-                        },
-                        "LLMModelType": {
-                            "title": "LLMModelType",
-                            "description": "OpenAI model type",
-                            "enum": [
-                                "gpt-3.5-turbo",
-                                "gpt-4",
-                                "text-ada-001",
-                                "text-babbage-001",
-                                "text-curie-001",
-                                "text-davinci-003"
-                            ],
-                            "type": "string"
-                        }
-                    }
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "TextSummarizerPiece Output model",
-                    "type": "object",
-                    "properties": {
-                        "string_summarized_text": {
-                            "title": "String Summarized Text",
-                            "description": "summarized text",
-                            "type": "string"
-                        },
-                        "file_path_summarized_text": {
-                            "title": "File Path Summarized Text",
-                            "description": "Path to summarized text file",
-                            "type": "string"
-                        }
-                    }
-                },
-                "secrets_schema": {
-                    "title": "SecretsModel",
-                    "description": "TextSummarizerPiece Secrets model",
-                    "type": "object",
-                    "properties": {
-                        "OPENAI_API_KEY": {
-                            "title": "Openai Api Key",
-                            "description": "Your OpenAI API key",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "OPENAI_API_KEY"
-                    ]
-                },
-                "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/TextSummarizerPiece"
-            },
-            "ImageGeneratorPiece": {
-                "name": "ImageGeneratorPiece",
-                "dependency": {
-                    "dockerfile": "Dockerfile_01",
-                    "requirements_file": null
-                },
-                "tags": [],
-                "style": {
-                    "node_label": "DALL-E Image Generator",
-                    "node_type": "default",
-                    "node_style": {
-                        "backgroundColor": "#ebebeb"
-                    },
-                    "useIcon": true,
-                    "icon_class_name": "fa-solid:image",
-                    "iconStyle": {
-                        "cursor": "pointer"
-                    }
-                },
-                "description": "This Piece utilizes DALL-E, an OpenAI model that generates images based on a prompt.",
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "ImageGeneratorPiece input model",
-                    "type": "object",
-                    "properties": {
-                        "prompt": {
-                            "title": "Prompt",
-                            "description": "A text description of the desired image",
-                            "type": "string"
-                        },
-                        "size": {
-                            "description": "The size of the generated images",
-                            "default": "1024x1024",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/ImageSize"
-                                }
-                            ]
-                        },
-                        "image_format": {
-                            "description": "The format in which the generated image is returned",
-                            "default": "url",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/ImageFormat"
-                                }
-                            ]
-                        },
-                        "output_type": {
-                            "description": "The type of the output. Attention: if Response Format equals to image_png, then Output Type must be file type.",
-                            "default": "string",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/OutputTypeType"
-                                }
-                            ]
-                        }
-                    },
-                    "required": [
-                        "prompt"
-                    ],
-                    "definitions": {
-                        "ImageSize": {
-                            "title": "ImageSize",
-                            "description": "Image size to generate",
-                            "enum": [
-                                "1024x1024",
-                                "512x512",
-                                "256x256"
-                            ],
-                            "type": "string"
-                        },
-                        "ImageFormat": {
-                            "title": "ImageFormat",
-                            "description": "Image format to return",
-                            "enum": [
-                                "url",
-                                "image_png",
-                                "base64_string"
-                            ],
-                            "type": "string"
-                        },
-                        "OutputTypeType": {
                             "title": "OutputTypeType",
-                            "description": "Output type for the result text",
-                            "enum": [
-                                "file",
-                                "string",
-                                "file_and_string"
+                            "type": "string"
+                        }
+                    },
+                    "description": "TextSummarizerPiece Input model",
+                    "properties": {
+                        "text": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
                             ],
-                            "type": "string"
-                        }
-                    }
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "ImageGeneratorPiece output model",
-                    "type": "object",
-                    "properties": {
-                        "output_string": {
-                            "title": "Output String",
-                            "description": "The generated image as string",
-                            "type": "string"
+                            "default": null,
+                            "description": "Text to summarize",
+                            "required": false,
+                            "title": "Text"
                         },
-                        "output_file_path": {
-                            "title": "Output File Path",
-                            "description": "Path to the generated image",
-                            "type": "string"
-                        }
-                    }
-                },
-                "secrets_schema": {
-                    "title": "SecretsModel",
-                    "description": "ImageGeneratorPiece secrets model",
-                    "type": "object",
-                    "properties": {
-                        "OPENAI_API_KEY": {
-                            "title": "Openai Api Key",
-                            "description": "Your OpenAI API key",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "OPENAI_API_KEY"
-                    ]
-                },
-                "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/ImageGeneratorPiece"
-            },
-            "PromptCreatorForImageGeneratorPiece": {
-                "name": "PromptCreatorForImageGeneratorPiece",
-                "dependency": {
-                    "dockerfile": "Dockerfile_01",
-                    "requirements_file": null
-                },
-                "tags": [],
-                "style": {
-                    "node_label": "Prompt Creator for Image Generator AI",
-                    "node_type": "default",
-                    "node_style": {
-                        "backgroundColor": "#ebebeb"
-                    },
-                    "useIcon": true,
-                    "icon_class_name": "fa-solid:terminal",
-                    "iconStyle": {
-                        "cursor": "pointer"
-                    }
-                },
-                "description": "This Piece utilizes OpenAI to generates a prompt to pass to an image generator AI.",
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "PromptCreatorForImageGeneratorPiece input model",
-                    "type": "object",
-                    "properties": {
-                        "context": {
-                            "title": "Context",
-                            "description": "The context to generate an image from",
-                            "type": "string"
-                        },
-                        "art_style": {
-                            "title": "Art Style",
-                            "description": "The art style to generate an image from. Your imagination is the limit!",
-                            "default": "You know many art styles, so you always vary a lot on your suggestions!",
-                            "type": "string"
+                        "text_file_path": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
+                            "description": "Use it only if not using text field. File path to the text to summarize",
+                            "required": false,
+                            "title": "Text File Path"
                         },
                         "output_type": {
-                            "description": "The type of output to return",
-                            "default": "string",
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/OutputTypeType"
+                                    "$ref": "#/$defs/OutputTypeType"
                                 }
-                            ]
+                            ],
+                            "default": "string",
+                            "description": "The type of output to return"
                         },
                         "openai_model": {
-                            "description": "OpenAI model to bring your character to life",
-                            "default": "gpt-3.5-turbo",
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/LLMModelType"
+                                    "$ref": "#/$defs/LLMModelType"
                                 }
-                            ]
+                            ],
+                            "default": "gpt-3.5-turbo",
+                            "description": "OpenAI model name to use for summarization"
+                        },
+                        "chunk_size": {
+                            "default": 1000,
+                            "description": "Chunk size, measured in tokens, of each pre-summary chunk",
+                            "title": "Chunk Size",
+                            "type": "integer"
+                        },
+                        "chunk_overlap_rate": {
+                            "default": 0.2,
+                            "description": "The percentage of overlap between each chunk",
+                            "title": "Chunk Overlap Rate",
+                            "type": "number"
                         },
                         "completion_max_tokens": {
+                            "default": 500,
+                            "description": "The maximum number of tokens to generate in the summary.",
                             "title": "Completion Max Tokens",
-                            "description": "The maximum number of tokens to generate the prompt.",
-                            "default": 350,
                             "type": "integer"
                         },
                         "temperature": {
-                            "title": "Temperature",
+                            "default": 0.2,
                             "description": "Temperature of the model, between 0 (more precise) and 1 (more creative)",
-                            "default": 0.7,
-                            "exclusiveMinimum": 0,
-                            "maximum": 1,
+                            "title": "Temperature",
                             "type": "number"
                         }
                     },
-                    "required": [
-                        "context"
-                    ],
-                    "definitions": {
-                        "OutputTypeType": {
-                            "title": "OutputTypeType",
-                            "description": "Output type",
-                            "enum": [
-                                "file",
-                                "string",
-                                "file_and_string"
-                            ],
-                            "type": "string"
-                        },
-                        "LLMModelType": {
-                            "title": "LLMModelType",
-                            "description": "OpenAI model type",
-                            "enum": [
-                                "gpt-3.5-turbo",
-                                "gpt-4",
-                                "text-ada-001",
-                                "text-babbage-001",
-                                "text-curie-001",
-                                "text-davinci-003"
-                            ],
-                            "type": "string"
-                        }
-                    }
+                    "title": "InputModel",
+                    "type": "object"
                 },
                 "output_schema": {
-                    "title": "OutputModel",
-                    "description": "PromptCreatorForImageGeneratorPiece output model",
-                    "type": "object",
+                    "description": "TextSummarizerPiece Output model",
                     "properties": {
-                        "generated_prompt_string": {
-                            "title": "Generated Prompt String",
-                            "description": "The generated prompt to pass to an image generator AI",
+                        "string_summarized_text": {
+                            "default": null,
+                            "description": "summarized text",
+                            "title": "String Summarized Text",
                             "type": "string"
                         },
-                        "generated_prompt_file_path": {
-                            "title": "Generated Prompt File Path",
-                            "description": "The path to the generated prompt, in .txt format",
+                        "file_path_summarized_text": {
+                            "default": null,
+                            "description": "Path to summarized text file",
+                            "title": "File Path Summarized Text",
                             "type": "string"
                         }
-                    }
+                    },
+                    "title": "OutputModel",
+                    "type": "object"
                 },
                 "secrets_schema": {
-                    "title": "SecretsModel",
-                    "description": "PromptCreatorForImageGeneratorPiece secrets model",
-                    "type": "object",
+                    "description": "TextSummarizerPiece Secrets model",
                     "properties": {
                         "OPENAI_API_KEY": {
-                            "title": "Openai Api Key",
                             "description": "Your OpenAI API key",
+                            "title": "Openai Api Key",
                             "type": "string"
                         }
                     },
                     "required": [
                         "OPENAI_API_KEY"
-                    ]
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
                 },
-                "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/PromptCreatorForImageGeneratorPiece"
+                "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/TextSummarizerPiece"
             },
             "AudioTranscriptionPiece": {
                 "name": "AudioTranscriptionPiece",
@@ -1116,574 +1538,99 @@
                     }
                 },
                 "input_schema": {
-                    "title": "InputModel",
-                    "description": "AudioTranscriptPiece input model",
-                    "type": "object",
-                    "properties": {
-                        "audio_file_path": {
-                            "title": "Audio File Path",
-                            "description": "The path to the audio file to process.",
-                            "type": "string"
-                        },
-                        "output_type": {
-                            "description": "The type of output for the result text",
-                            "default": "string",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/OutputTypeType"
-                                }
-                            ]
-                        },
-                        "temperature": {
-                            "title": "Temperature",
-                            "description": "What sampling temperature to use, between 0 and 1",
-                            "default": 0.1,
-                            "exclusiveMinimum": 0.0,
-                            "maximum": 1,
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "audio_file_path"
-                    ],
-                    "definitions": {
+                    "$defs": {
                         "OutputTypeType": {
-                            "title": "OutputTypeType",
                             "description": "Output type for the result text",
                             "enum": [
                                 "file",
                                 "string",
                                 "file_and_string"
                             ],
+                            "title": "OutputTypeType",
                             "type": "string"
                         }
-                    }
+                    },
+                    "description": "AudioTranscriptPiece input model",
+                    "properties": {
+                        "audio_file_path": {
+                            "description": "The path to the audio file to process.",
+                            "title": "Audio File Path",
+                            "type": "string"
+                        },
+                        "output_type": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OutputTypeType"
+                                }
+                            ],
+                            "default": "string",
+                            "description": "The type of output for the result text"
+                        },
+                        "temperature": {
+                            "default": 0.1,
+                            "description": "What sampling temperature to use, between 0 and 1",
+                            "exclusiveMinimum": 0.0,
+                            "maximum": 1.0,
+                            "title": "Temperature",
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "audio_file_path"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
                 },
                 "output_schema": {
-                    "title": "OutputModel",
                     "description": "AudioTranscriptPiece output model",
-                    "type": "object",
                     "properties": {
                         "message": {
-                            "title": "Message",
                             "description": "Output message to log",
+                            "title": "Message",
                             "type": "string"
                         },
                         "string_transcription_result": {
-                            "title": "String Transcription Result",
+                            "default": null,
                             "description": "The result transcription text as a string.",
+                            "title": "String Transcription Result",
                             "type": "string"
                         },
                         "file_path_transcription_result": {
-                            "title": "File Path Transcription Result",
+                            "default": null,
                             "description": "The result transcription text as a file path.",
+                            "title": "File Path Transcription Result",
                             "type": "string"
                         }
                     },
                     "required": [
                         "message"
-                    ]
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
                 },
                 "secrets_schema": {
-                    "title": "SecretsModel",
                     "description": "AudioTranscriptPiece secret model",
-                    "type": "object",
                     "properties": {
                         "OPENAI_API_KEY": {
-                            "title": "Openai Api Key",
                             "description": "OpenAI API key",
+                            "title": "Openai Api Key",
                             "type": "string"
                         }
                     },
                     "required": [
                         "OPENAI_API_KEY"
-                    ]
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
                 },
                 "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/AudioTranscriptionPiece"
-            },
-            "InformationExtractionPiece": {
-                "name": "InformationExtractionPiece",
-                "dependency": {
-                    "dockerfile": "Dockerfile_01",
-                    "requirements_file": null
-                },
-                "tags": [
-                    "text",
-                    "information extraction",
-                    "openai"
-                ],
-                "style": {
-                    "node_label": "Information Extraction",
-                    "node_type": "default",
-                    "node_style": {
-                        "backgroundColor": "#ebebeb"
-                    },
-                    "useIcon": true,
-                    "icon_class_name": "fa-solid:align-right",
-                    "iconStyle": {
-                        "cursor": "pointer"
-                    }
-                },
-                "description": "Extracts user-defined information from the input text.",
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "InformationExtractionPiece Input model",
-                    "type": "object",
-                    "properties": {
-                        "input_text": {
-                            "title": "Input Text",
-                            "description": "Source text from where information should be extracted.",
-                            "from_upstream": "always",
-                            "type": "string"
-                        },
-                        "openai_model": {
-                            "description": "OpenAI model name to use for information extraction.",
-                            "default": "gpt-3.5-turbo-0613",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/LLMModelType"
-                                }
-                            ]
-                        },
-                        "extract_items": {
-                            "title": "Extract Items",
-                            "description": "Information items to be extracted from source text.",
-                            "default": [
-                                {
-                                    "name": "name",
-                                    "description": "Name of the person.",
-                                    "type": "string"
-                                },
-                                {
-                                    "name": "age",
-                                    "description": "Age of the person.",
-                                    "type": "integer"
-                                }
-                            ],
-                            "from_upstream": "never",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/ExtractItemsModel"
-                            }
-                        }
-                    },
-                    "required": [
-                        "input_text"
-                    ],
-                    "definitions": {
-                        "LLMModelType": {
-                            "title": "LLMModelType",
-                            "description": "OpenAI model type",
-                            "enum": [
-                                "gpt-3.5-turbo-0613",
-                                "gpt-4"
-                            ],
-                            "type": "string"
-                        },
-                        "ExtractItemType": {
-                            "title": "ExtractItemType",
-                            "description": "OutputArgsType Enum",
-                            "enum": [
-                                "string",
-                                "integer",
-                                "float",
-                                "boolean"
-                            ],
-                            "type": "string"
-                        },
-                        "ExtractItemsModel": {
-                            "title": "ExtractItemsModel",
-                            "type": "object",
-                            "properties": {
-                                "name": {
-                                    "title": "Name",
-                                    "description": "Name of the output argument.",
-                                    "from_upstream": "never",
-                                    "type": "string"
-                                },
-                                "description": {
-                                    "title": "Description",
-                                    "description": "Description of the output argument.",
-                                    "from_upstream": "never",
-                                    "type": "string"
-                                },
-                                "type": {
-                                    "description": "Type of the output argument.",
-                                    "default": "string",
-                                    "from_upstream": "never",
-                                    "allOf": [
-                                        {
-                                            "$ref": "#/definitions/ExtractItemType"
-                                        }
-                                    ]
-                                }
-                            },
-                            "required": [
-                                "name",
-                                "description"
-                            ]
-                        }
-                    }
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "InformationExtractionPiece Output Model",
-                    "type": "object",
-                    "properties": {}
-                },
-                "secrets_schema": {
-                    "title": "SecretsModel",
-                    "description": "InformationExtractionPiece Secrets model",
-                    "type": "object",
-                    "properties": {
-                        "OPENAI_API_KEY": {
-                            "title": "Openai Api Key",
-                            "description": "Your OpenAI API key.",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "OPENAI_API_KEY"
-                    ]
-                },
-                "source_url": "https://github.com/Tauffer-Consulting/openai_domino_pieces/tree/main/pieces/InformationExtractionPiece"
             }
         }
     },
     "social_media_domino_pieces": {
-        "version": "0.3.1",
+        "version": "0.4.1",
         "url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces",
         "pieces": {
-            "YoutubeDownloadPiece": {
-                "name": "YoutubeDownloadPiece",
-                "dependency": {
-                    "dockerfile": "Dockerfile_youtube",
-                    "requirements_file": null
-                },
-                "tags": [],
-                "style": {
-                    "node_label": "Youtube Download Piece",
-                    "node_type": "default",
-                    "node_style": {
-                        "backgroundColor": "#ebebeb"
-                    },
-                    "useIcon": true,
-                    "icon_class_name": "fa-solid:download",
-                    "iconStyle": {
-                        "cursor": "pointer"
-                    }
-                },
-                "description": "Downloads content from youtube videos as audio or video files.",
-                "container_resources": {
-                    "requests": {
-                        "cpu": "100m",
-                        "memory": "128Mi"
-                    },
-                    "limits": {
-                        "cpu": "500m",
-                        "memory": "512Mi"
-                    }
-                },
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "Input data for YoutubeDownloadPiece",
-                    "type": "object",
-                    "properties": {
-                        "url": {
-                            "title": "Url",
-                            "description": "The url of the video to be downloaded.",
-                            "type": "string"
-                        },
-                        "output_type": {
-                            "description": "The type of output file to be downloaded.",
-                            "default": "audio",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/OutputTypeType"
-                                }
-                            ]
-                        }
-                    },
-                    "required": [
-                        "url"
-                    ],
-                    "definitions": {
-                        "OutputTypeType": {
-                            "title": "OutputTypeType",
-                            "description": "An enumeration.",
-                            "enum": [
-                                "audio",
-                                "video"
-                            ],
-                            "type": "string"
-                        }
-                    }
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "Output data for YoutubeDownloadPiece",
-                    "type": "object",
-                    "properties": {
-                        "message": {
-                            "title": "Message",
-                            "description": "Output message to log",
-                            "default": "",
-                            "type": "string"
-                        },
-                        "file_path": {
-                            "title": "File Path",
-                            "description": "The path to the downloaded file",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "file_path"
-                    ]
-                },
-                "secrets_schema": null,
-                "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/YoutubeDownloadPiece"
-            },
-            "InstagramPostImagePiece": {
-                "name": "InstagramPostImagePiece",
-                "dependency": {
-                    "dockerfile": null,
-                    "requirements_file": null
-                },
-                "tags": [
-                    "Instagram"
-                ],
-                "style": {
-                    "node_label": "Instagram Post Image Piece",
-                    "node_type": "default",
-                    "node_style": {
-                        "backgroundColor": "#b3cde8"
-                    },
-                    "useIcon": true,
-                    "icon_class_name": "fa-brands:instagram",
-                    "iconStyle": {
-                        "cursor": "pointer"
-                    }
-                },
-                "description": "Publish an image to an Instagram account",
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "InstagramPostImagePiece input model",
-                    "type": "object",
-                    "properties": {
-                        "image_url": {
-                            "title": "Image Url",
-                            "description": "public URL of the image",
-                            "type": "string"
-                        },
-                        "caption_header": {
-                            "title": "Caption Header",
-                            "description": "optional header of the caption",
-                            "type": "string"
-                        },
-                        "caption": {
-                            "title": "Caption",
-                            "description": "post caption",
-                            "type": "string"
-                        },
-                        "caption_footer": {
-                            "title": "Caption Footer",
-                            "description": "optional footer of the caption",
-                            "type": "string"
-                        },
-                        "facebook_page_name": {
-                            "title": "Facebook Page Name",
-                            "description": "Facebook page connected to the Instagram account",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "image_url",
-                        "facebook_page_name"
-                    ]
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "InstagramPostImagePiece output model",
-                    "type": "object",
-                    "properties": {
-                        "message": {
-                            "title": "Message",
-                            "description": "output message to log",
-                            "default": "",
-                            "type": "string"
-                        },
-                        "post_id": {
-                            "title": "Post Id",
-                            "description": "post ID",
-                            "type": "string"
-                        },
-                        "post_link": {
-                            "title": "Post Link",
-                            "description": "post link",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "post_id",
-                        "post_link"
-                    ]
-                },
-                "secrets_schema": {
-                    "title": "SecretsModel",
-                    "description": "InstagramPostImagePiece secrets model",
-                    "type": "object",
-                    "properties": {
-                        "APP_ID": {
-                            "title": "App Id",
-                            "description": "ID from a Facebook App",
-                            "type": "string"
-                        },
-                        "APP_SECRET": {
-                            "title": "App Secret",
-                            "description": "secret from a Facebook App",
-                            "type": "string"
-                        },
-                        "ACCESS_TOKEN": {
-                            "title": "Access Token",
-                            "description": "access_token getted from a Facebook App",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "APP_ID",
-                        "APP_SECRET",
-                        "ACCESS_TOKEN"
-                    ]
-                },
-                "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/InstagramPostImagePiece"
-            },
-            "ImgurImageUploaderPiece": {
-                "name": "ImgurImageUploaderPiece",
-                "dependency": {
-                    "dockerfile": null,
-                    "requirements_file": "requirements.txt"
-                },
-                "tags": [],
-                "style": {
-                    "node_label": "Imgur Image Uploader Piece",
-                    "node_type": "default",
-                    "node_style": {
-                        "backgroundColor": "#ebebeb"
-                    },
-                    "useIcon": true,
-                    "icon_class_name": "fa-solid:file-upload",
-                    "iconStyle": {
-                        "cursor": "pointer"
-                    }
-                },
-                "description": "This Piece upload an image to Imgur.",
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "ImgurImageUploaderPiece input model",
-                    "type": "object",
-                    "properties": {
-                        "image_path": {
-                            "title": "Image Path",
-                            "description": "The path to your image",
-                            "type": "string"
-                        },
-                        "image_title": {
-                            "title": "Image Title",
-                            "description": "The title for your image",
-                            "type": "string"
-                        },
-                        "image_description": {
-                            "title": "Image Description",
-                            "description": "The description for your image",
-                            "type": "string"
-                        },
-                        "id_as_output": {
-                            "title": "Id As Output",
-                            "description": "If true, the image id will be returned as an output",
-                            "default": true,
-                            "type": "boolean"
-                        },
-                        "title_as_output": {
-                            "title": "Title As Output",
-                            "description": "If true, the image title will be returned as an output",
-                            "default": true,
-                            "type": "boolean"
-                        },
-                        "description_as_output": {
-                            "title": "Description As Output",
-                            "description": "If true, the image description will be returned as an output",
-                            "default": true,
-                            "type": "boolean"
-                        },
-                        "delete_hash_as_output": {
-                            "title": "Delete Hash As Output",
-                            "description": "If true, the image delete hash will be returned as an output",
-                            "default": true,
-                            "type": "boolean"
-                        },
-                        "url_as_output": {
-                            "title": "Url As Output",
-                            "description": "If true, the image link will be returned as an output",
-                            "default": true,
-                            "type": "boolean"
-                        }
-                    },
-                    "required": [
-                        "image_path"
-                    ]
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "ImgurImageUploaderPiece output model",
-                    "type": "object",
-                    "properties": {
-                        "image_id": {
-                            "title": "Image Id",
-                            "description": "The image id",
-                            "type": "string"
-                        },
-                        "image_title": {
-                            "title": "Image Title",
-                            "description": "The image title",
-                            "type": "string"
-                        },
-                        "image_description": {
-                            "title": "Image Description",
-                            "description": "The image description",
-                            "type": "string"
-                        },
-                        "image_delete_hash": {
-                            "title": "Image Delete Hash",
-                            "description": "The delete hash for your uploaded image",
-                            "type": "string"
-                        },
-                        "image_url": {
-                            "title": "Image Url",
-                            "description": "The URL to your uploaded image",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "image_delete_hash"
-                    ]
-                },
-                "secrets_schema": {
-                    "title": "SecretsModel",
-                    "description": "ImgurImageUploaderPiece secrets model",
-                    "type": "object",
-                    "properties": {
-                        "CLIENT_ID": {
-                            "title": "Client Id",
-                            "description": "The Imgur app client ID",
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "CLIENT_ID"
-                    ]
-                },
-                "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/ImgurImageUploaderPiece"
-            },
             "EmailSenderPiece": {
                 "name": "EmailSenderPiece",
                 "dependency": {
@@ -1717,54 +1664,120 @@
                     }
                 },
                 "input_schema": {
-                    "title": "InputModel",
+                    "$defs": {
+                        "InnerArgModel": {
+                            "description": "Inner argument model to use in the body and subject texts",
+                            "properties": {
+                                "arg_name": {
+                                    "title": "Arg Name",
+                                    "type": "string"
+                                },
+                                "arg_value": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "integer"
+                                        },
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "boolean"
+                                        }
+                                    ],
+                                    "title": "Arg Value"
+                                }
+                            },
+                            "required": [
+                                "arg_name",
+                                "arg_value"
+                            ],
+                            "title": "InnerArgModel",
+                            "type": "object"
+                        },
+                        "ProviderType": {
+                            "enum": [
+                                "gmail",
+                                "outlook",
+                                "office365",
+                                "yahoo"
+                            ],
+                            "title": "ProviderType",
+                            "type": "string"
+                        }
+                    },
                     "description": "Input data for EmailSenderPiece",
-                    "type": "object",
                     "properties": {
                         "email_provider": {
-                            "description": "The email provider to use",
-                            "default": "gmail",
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/ProviderType"
+                                    "$ref": "#/$defs/ProviderType"
                                 }
-                            ]
+                            ],
+                            "default": "gmail",
+                            "description": "The email provider to use"
                         },
                         "email_receivers": {
-                            "title": "Email Receivers",
                             "description": "The receivers of the email, as comma-separated values",
+                            "title": "Email Receivers",
                             "type": "string"
                         },
                         "email_subject": {
-                            "title": "Email Subject",
                             "description": "The subject of the email.",
+                            "title": "Email Subject",
                             "type": "string"
                         },
                         "subject_args": {
-                            "title": "Subject Args",
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "$ref": "#/$defs/InnerArgModel"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
                             "description": "List of arguments to insert into the subject of the email",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/InnerArgModel"
-                            }
+                            "title": "Subject Args"
                         },
                         "email_body": {
-                            "title": "Email Body",
                             "description": "The body of the email.",
+                            "title": "Email Body",
                             "type": "string"
                         },
                         "body_args": {
-                            "title": "Body Args",
+                            "anyOf": [
+                                {
+                                    "items": {
+                                        "$ref": "#/$defs/InnerArgModel"
+                                    },
+                                    "type": "array"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
                             "description": "List of arguments to insert into the body of the email",
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/InnerArgModel"
-                            }
+                            "title": "Body Args"
                         },
                         "attachment_path": {
-                            "title": "Attachment Path",
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
                             "description": "Path to the attachment file",
-                            "type": "string"
+                            "title": "Attachment Path"
                         }
                     },
                     "required": [
@@ -1772,103 +1785,196 @@
                         "email_subject",
                         "email_body"
                     ],
-                    "definitions": {
-                        "ProviderType": {
-                            "title": "ProviderType",
-                            "description": "An enumeration.",
-                            "enum": [
-                                "gmail",
-                                "outlook",
-                                "office365",
-                                "yahoo"
-                            ],
-                            "type": "string"
-                        },
-                        "ArgType": {
-                            "title": "ArgType",
-                            "description": "An enumeration.",
-                            "enum": [
-                                "string",
-                                "integer",
-                                "float",
-                                "boolean"
-                            ],
-                            "type": "string"
-                        },
-                        "InnerArgModel": {
-                            "title": "InnerArgModel",
-                            "description": "Inner argument model to use in the body and subject texts",
-                            "type": "object",
-                            "properties": {
-                                "arg_name": {
-                                    "title": "Arg Name",
-                                    "type": "string"
-                                },
-                                "arg_value": {
-                                    "title": "Arg Value",
-                                    "type": "string"
-                                },
-                                "arg_type": {
-                                    "$ref": "#/definitions/ArgType"
-                                }
-                            },
-                            "required": [
-                                "arg_name",
-                                "arg_value",
-                                "arg_type"
-                            ]
-                        }
-                    }
+                    "title": "InputModel",
+                    "type": "object"
                 },
                 "output_schema": {
-                    "title": "OutputModel",
                     "description": "Output data for EmailSenderPiece",
-                    "type": "object",
                     "properties": {
                         "message": {
-                            "title": "Message",
-                            "description": "Output message to log.",
                             "default": "",
+                            "description": "Output message to log.",
+                            "title": "Message",
                             "type": "string"
                         },
                         "success": {
-                            "title": "Success",
                             "description": "The result of the email sending task.",
+                            "title": "Success",
                             "type": "boolean"
                         },
                         "error": {
-                            "title": "Error",
-                            "description": "The error message, if any.",
                             "default": "",
+                            "description": "The error message, if any.",
+                            "title": "Error",
                             "type": "string"
                         }
                     },
                     "required": [
                         "success"
-                    ]
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
                 },
                 "secrets_schema": {
-                    "title": "SecretsModel",
                     "description": "Secrets data for EmailSenderPiece",
-                    "type": "object",
                     "properties": {
                         "EMAIL_SENDER_ACCOUNT": {
-                            "title": "Email Sender Account",
                             "description": "The email sender account.",
+                            "title": "Email Sender Account",
                             "type": "string"
                         },
                         "EMAIL_SENDER_PASSWORD": {
-                            "title": "Email Sender Password",
                             "description": "The email sender password",
+                            "title": "Email Sender Password",
                             "type": "string"
                         }
                     },
                     "required": [
                         "EMAIL_SENDER_ACCOUNT",
                         "EMAIL_SENDER_PASSWORD"
-                    ]
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
                 },
                 "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/EmailSenderPiece"
+            },
+            "InstagramPostImagePiece": {
+                "name": "InstagramPostImagePiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": null
+                },
+                "tags": [
+                    "Instagram"
+                ],
+                "style": {
+                    "node_label": "Instagram Post Image Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#b3cde8"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-brands:instagram",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "Publish an image to an Instagram account",
+                "input_schema": {
+                    "description": "InstagramPostImagePiece input model",
+                    "properties": {
+                        "image_url": {
+                            "description": "public URL of the image",
+                            "title": "Image Url",
+                            "type": "string"
+                        },
+                        "caption_header": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
+                            "description": "optional header of the caption",
+                            "title": "Caption Header"
+                        },
+                        "caption": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
+                            "description": "post caption",
+                            "title": "Caption"
+                        },
+                        "caption_footer": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
+                            "description": "optional footer of the caption",
+                            "title": "Caption Footer"
+                        },
+                        "facebook_page_name": {
+                            "description": "Facebook page connected to the Instagram account",
+                            "title": "Facebook Page Name",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "image_url",
+                        "facebook_page_name"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "description": "InstagramPostImagePiece output model",
+                    "properties": {
+                        "message": {
+                            "default": "",
+                            "description": "output message to log",
+                            "title": "Message",
+                            "type": "string"
+                        },
+                        "post_id": {
+                            "description": "post ID",
+                            "title": "Post Id",
+                            "type": "string"
+                        },
+                        "post_link": {
+                            "description": "post link",
+                            "title": "Post Link",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "post_id",
+                        "post_link"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": {
+                    "description": "InstagramPostImagePiece secrets model",
+                    "properties": {
+                        "APP_ID": {
+                            "description": "ID from a Facebook App",
+                            "title": "App Id",
+                            "type": "string"
+                        },
+                        "APP_SECRET": {
+                            "description": "secret from a Facebook App",
+                            "title": "App Secret",
+                            "type": "string"
+                        },
+                        "ACCESS_TOKEN": {
+                            "description": "access_token getted from a Facebook App",
+                            "title": "Access Token",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "APP_ID",
+                        "APP_SECRET",
+                        "ACCESS_TOKEN"
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
+                },
+                "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/InstagramPostImagePiece"
             },
             "InstagramGetMediaPiece": {
                 "name": "InstagramGetMediaPiece",
@@ -1893,130 +1999,130 @@
                 },
                 "description": "Get all media information about the instagram account",
                 "input_schema": {
-                    "title": "InputModel",
+                    "$defs": {
+                        "OutputTypeType": {
+                            "enum": [
+                                "python_list",
+                                "string",
+                                "json_string"
+                            ],
+                            "title": "OutputTypeType",
+                            "type": "string"
+                        }
+                    },
                     "description": "Get Instagram Media Input",
-                    "type": "object",
                     "properties": {
                         "facebook_page_name": {
-                            "title": "Facebook Page Name",
                             "description": "Facebook page connected to the Instagram account",
+                            "title": "Facebook Page Name",
                             "type": "string"
                         },
                         "output_type": {
-                            "description": "output type",
-                            "default": "string",
                             "allOf": [
                                 {
-                                    "$ref": "#/definitions/OutputTypeType"
+                                    "$ref": "#/$defs/OutputTypeType"
                                 }
-                            ]
+                            ],
+                            "default": "string",
+                            "description": "output type"
                         },
                         "id_field": {
-                            "title": "Id Field",
-                            "description": "if true, the id field will be returned",
                             "default": true,
+                            "description": "if true, the id field will be returned",
+                            "title": "Id Field",
                             "type": "boolean"
                         },
                         "media_type_field": {
-                            "title": "Media Type Field",
-                            "description": "if true, the media_type field will be returned",
                             "default": true,
+                            "description": "if true, the media_type field will be returned",
+                            "title": "Media Type Field",
                             "type": "boolean"
                         },
                         "caption_field": {
-                            "title": "Caption Field",
-                            "description": "if true, the caption field will be returned",
                             "default": true,
+                            "description": "if true, the caption field will be returned",
+                            "title": "Caption Field",
                             "type": "boolean"
                         },
                         "like_count_field": {
-                            "title": "Like Count Field",
-                            "description": "if true, the like_count field will be returned",
                             "default": true,
+                            "description": "if true, the like_count field will be returned",
+                            "title": "Like Count Field",
                             "type": "boolean"
                         },
                         "comments_count_field": {
-                            "title": "Comments Count Field",
-                            "description": "if true, the comments_count field will be returned",
                             "default": true,
+                            "description": "if true, the comments_count field will be returned",
+                            "title": "Comments Count Field",
                             "type": "boolean"
                         },
                         "permalink_field": {
-                            "title": "Permalink Field",
-                            "description": "if true, the permalink field will be returned",
                             "default": true,
+                            "description": "if true, the permalink field will be returned",
+                            "title": "Permalink Field",
                             "type": "boolean"
                         },
                         "timestamp_field": {
-                            "title": "Timestamp Field",
-                            "description": "if true, the timestamp field will be returned",
                             "default": true,
+                            "description": "if true, the timestamp field will be returned",
+                            "title": "Timestamp Field",
                             "type": "boolean"
                         },
                         "comments_field": {
-                            "title": "Comments Field",
-                            "description": "if true, the comments field will be returned",
                             "default": true,
+                            "description": "if true, the comments field will be returned",
+                            "title": "Comments Field",
                             "type": "boolean"
                         }
                     },
                     "required": [
                         "facebook_page_name"
                     ],
-                    "definitions": {
-                        "OutputTypeType": {
-                            "title": "OutputTypeType",
-                            "description": "An enumeration.",
-                            "enum": [
-                                "python_list",
-                                "string",
-                                "json_string"
-                            ],
-                            "type": "string"
-                        }
-                    }
+                    "title": "InputModel",
+                    "type": "object"
                 },
                 "output_schema": {
-                    "title": "OutputModel",
                     "description": "Get Instagram Media Output",
-                    "type": "object",
                     "properties": {
                         "media_list": {
-                            "title": "Media List",
+                            "default": null,
                             "description": "list of Instagram media posts",
-                            "type": "array",
-                            "items": {}
+                            "items": {},
+                            "title": "Media List",
+                            "type": "array"
                         },
                         "media_string": {
-                            "title": "Media String",
+                            "default": null,
                             "description": "string of Instagram media posts",
+                            "title": "Media String",
                             "type": "string"
                         },
                         "media_json_string": {
-                            "title": "Media Json String",
+                            "default": null,
                             "description": "json string of Instagram media posts",
+                            "title": "Media Json String",
                             "type": "string"
                         }
-                    }
+                    },
+                    "title": "OutputModel",
+                    "type": "object"
                 },
                 "secrets_schema": {
-                    "title": "SecretsModel",
                     "description": "Get Instagram Media Secrets",
-                    "type": "object",
                     "properties": {
                         "APP_ID": {
-                            "title": "App Id",
                             "description": "ID from a Facebook App",
+                            "title": "App Id",
                             "type": "string"
                         },
                         "APP_SECRET": {
-                            "title": "App Secret",
                             "description": "secret from a Facebook App",
+                            "title": "App Secret",
                             "type": "string"
                         },
                         "ACCESS_TOKEN": {
-                            "title": "Access Token",
                             "description": "access_token getted from a Facebook App",
+                            "title": "Access Token",
                             "type": "string"
                         }
                     },
@@ -2024,9 +2130,311 @@
                         "APP_ID",
                         "APP_SECRET",
                         "ACCESS_TOKEN"
-                    ]
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
                 },
                 "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/InstagramGetMediaPiece"
+            },
+            "ImgurDeleteImagePiece": {
+                "name": "ImgurDeleteImagePiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": "requirements.txt"
+                },
+                "tags": [],
+                "style": {
+                    "node_label": "Imgur Image Delete Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#ebebeb"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "uil:image-slash",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "This Piece deletes an image from Imgur.",
+                "input_schema": {
+                    "description": "ImgurDeleteImagePiece input model",
+                    "properties": {
+                        "image_delete_hash": {
+                            "description": "The delete hash of the image you want to delete",
+                            "title": "Image Delete Hash",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "image_delete_hash"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "description": "ImgurDeleteImagePiece output model",
+                    "properties": {
+                        "deletion_status": {
+                            "default": null,
+                            "description": "The status of the deletion",
+                            "title": "Deletion Status",
+                            "type": "integer"
+                        }
+                    },
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": {
+                    "description": "ImgurDeleteImagePiece secrets model",
+                    "properties": {
+                        "IMGUR_ACCESS_TOKEN": {
+                            "description": "The user access token for the Imgur app",
+                            "title": "Imgur Access Token",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "IMGUR_ACCESS_TOKEN"
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
+                },
+                "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/ImgurDeleteImagePiece"
+            },
+            "YoutubeDownloadPiece": {
+                "name": "YoutubeDownloadPiece",
+                "dependency": {
+                    "dockerfile": "Dockerfile_youtube",
+                    "requirements_file": null
+                },
+                "tags": [],
+                "style": {
+                    "node_label": "Youtube Download Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#ebebeb"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-solid:download",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "Downloads content from youtube videos as audio or video files.",
+                "container_resources": {
+                    "requests": {
+                        "cpu": "100m",
+                        "memory": "128Mi"
+                    },
+                    "limits": {
+                        "cpu": "500m",
+                        "memory": "512Mi"
+                    }
+                },
+                "input_schema": {
+                    "$defs": {
+                        "OutputTypeType": {
+                            "enum": [
+                                "audio",
+                                "video"
+                            ],
+                            "title": "OutputTypeType",
+                            "type": "string"
+                        }
+                    },
+                    "description": "Input data for YoutubeDownloadPiece",
+                    "properties": {
+                        "url": {
+                            "description": "The url of the video to be downloaded.",
+                            "title": "Url",
+                            "type": "string"
+                        },
+                        "output_type": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OutputTypeType"
+                                }
+                            ],
+                            "default": "audio",
+                            "description": "The type of output file to be downloaded."
+                        }
+                    },
+                    "required": [
+                        "url"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "description": "Output data for YoutubeDownloadPiece",
+                    "properties": {
+                        "message": {
+                            "default": "",
+                            "description": "Output message to log",
+                            "title": "Message",
+                            "type": "string"
+                        },
+                        "file_path": {
+                            "description": "The path to the downloaded file",
+                            "title": "File Path",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "file_path"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": null,
+                "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/YoutubeDownloadPiece"
+            },
+            "ImgurImageUploaderPiece": {
+                "name": "ImgurImageUploaderPiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": "requirements.txt"
+                },
+                "tags": [],
+                "style": {
+                    "node_label": "Imgur Image Uploader Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#ebebeb"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fa-solid:file-upload",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "This Piece upload an image to Imgur.",
+                "input_schema": {
+                    "description": "ImgurImageUploaderPiece input model",
+                    "properties": {
+                        "image_path": {
+                            "description": "The path to your image",
+                            "title": "Image Path",
+                            "type": "string"
+                        },
+                        "image_title": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
+                            "description": "The title for your image",
+                            "title": "Image Title"
+                        },
+                        "image_description": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
+                            "description": "The description for your image",
+                            "title": "Image Description"
+                        },
+                        "id_as_output": {
+                            "default": true,
+                            "description": "If true, the image id will be returned as an output",
+                            "title": "Id As Output",
+                            "type": "boolean"
+                        },
+                        "title_as_output": {
+                            "default": true,
+                            "description": "If true, the image title will be returned as an output",
+                            "title": "Title As Output",
+                            "type": "boolean"
+                        },
+                        "description_as_output": {
+                            "default": true,
+                            "description": "If true, the image description will be returned as an output",
+                            "title": "Description As Output",
+                            "type": "boolean"
+                        },
+                        "delete_hash_as_output": {
+                            "default": true,
+                            "description": "If true, the image delete hash will be returned as an output",
+                            "title": "Delete Hash As Output",
+                            "type": "boolean"
+                        },
+                        "url_as_output": {
+                            "default": true,
+                            "description": "If true, the image link will be returned as an output",
+                            "title": "Url As Output",
+                            "type": "boolean"
+                        }
+                    },
+                    "required": [
+                        "image_path"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "description": "ImgurImageUploaderPiece output model",
+                    "properties": {
+                        "image_id": {
+                            "default": null,
+                            "description": "The image id",
+                            "title": "Image Id",
+                            "type": "string"
+                        },
+                        "image_title": {
+                            "default": null,
+                            "description": "The image title",
+                            "title": "Image Title",
+                            "type": "string"
+                        },
+                        "image_description": {
+                            "default": null,
+                            "description": "The image description",
+                            "title": "Image Description",
+                            "type": "string"
+                        },
+                        "image_delete_hash": {
+                            "description": "The delete hash for your uploaded image",
+                            "title": "Image Delete Hash",
+                            "type": "string"
+                        },
+                        "image_url": {
+                            "default": null,
+                            "description": "The URL to your uploaded image",
+                            "title": "Image Url",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "image_delete_hash"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": {
+                    "description": "ImgurImageUploaderPiece secrets model",
+                    "properties": {
+                        "CLIENT_ID": {
+                            "description": "The Imgur app client ID",
+                            "title": "Client Id",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "CLIENT_ID"
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
+                },
+                "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/ImgurImageUploaderPiece"
             },
             "YoutubeListVideosPiece": {
                 "name": "YoutubeListVideosPiece",
@@ -2059,61 +2467,8 @@
                     }
                 },
                 "input_schema": {
-                    "title": "InputModel",
-                    "description": "Input data for YoutubeListVideosPiece",
-                    "type": "object",
-                    "properties": {
-                        "channel_username": {
-                            "title": "Channel Username",
-                            "description": "The username of the Youtube channel.",
-                            "type": "string"
-                        },
-                        "max_videos": {
-                            "title": "Max Videos",
-                            "description": "The maximum number of videos to be returned",
-                            "default": 10,
-                            "exclusiveMinimum": 0,
-                            "type": "integer"
-                        },
-                        "published_at_or_after": {
-                            "title": "Published At Or After",
-                            "description": "Filter videos created at or after the specified date",
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "published_at_or_before": {
-                            "title": "Published At Or Before",
-                            "description": "Filter videos created before or at the specified date",
-                            "type": "string",
-                            "format": "date"
-                        },
-                        "order_by": {
-                            "title": "Order By",
-                            "description": "The order in which the videos are returned",
-                            "default": "date",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/OrderBy"
-                                }
-                            ]
-                        },
-                        "video_duration": {
-                            "title": "Video Duration",
-                            "description": "The duration of the video",
-                            "default": "any",
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/VideoDuration"
-                                }
-                            ]
-                        }
-                    },
-                    "required": [
-                        "channel_username"
-                    ],
-                    "definitions": {
+                    "$defs": {
                         "OrderBy": {
-                            "title": "OrderBy",
                             "description": "The order in which the videos are returned.",
                             "enum": [
                                 "date",
@@ -2122,10 +2477,10 @@
                                 "title",
                                 "viewCount"
                             ],
+                            "title": "OrderBy",
                             "type": "string"
                         },
                         "VideoDuration": {
-                            "title": "VideoDuration",
                             "description": "The duration of the video.",
                             "enum": [
                                 "any",
@@ -2133,109 +2488,481 @@
                                 "medium",
                                 "short"
                             ],
+                            "title": "VideoDuration",
                             "type": "string"
                         }
-                    }
+                    },
+                    "description": "Input data for YoutubeListVideosPiece",
+                    "properties": {
+                        "channel_username": {
+                            "description": "The username of the Youtube channel.",
+                            "title": "Channel Username",
+                            "type": "string"
+                        },
+                        "max_videos": {
+                            "default": 10,
+                            "description": "The maximum number of videos to be returned",
+                            "exclusiveMinimum": 0,
+                            "title": "Max Videos",
+                            "type": "integer"
+                        },
+                        "published_at_or_after": {
+                            "anyOf": [
+                                {
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
+                            "description": "Filter videos created at or after the specified date",
+                            "title": "Published At Or After"
+                        },
+                        "published_at_or_before": {
+                            "anyOf": [
+                                {
+                                    "format": "date",
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "default": null,
+                            "description": "Filter videos created before or at the specified date",
+                            "title": "Published At Or Before"
+                        },
+                        "order_by": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/OrderBy"
+                                }
+                            ],
+                            "default": "date",
+                            "description": "The order in which the videos are returned",
+                            "title": "Order By"
+                        },
+                        "video_duration": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/VideoDuration"
+                                }
+                            ],
+                            "default": "any",
+                            "description": "The duration of the video",
+                            "title": "Video Duration"
+                        }
+                    },
+                    "required": [
+                        "channel_username"
+                    ],
+                    "title": "InputModel",
+                    "type": "object"
                 },
                 "output_schema": {
-                    "title": "OutputModel",
                     "description": "Output data for YoutubeListVideosPiece",
-                    "type": "object",
                     "properties": {
                         "message": {
-                            "title": "Message",
-                            "description": "Output message to log",
                             "default": "",
+                            "description": "Output message to log",
+                            "title": "Message",
                             "type": "string"
                         },
                         "videos_list": {
-                            "title": "Videos List",
                             "description": "A list containing information about videos.",
-                            "type": "array",
-                            "items": {}
+                            "items": {},
+                            "title": "Videos List",
+                            "type": "array"
                         }
                     },
                     "required": [
                         "videos_list"
-                    ]
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
                 },
                 "secrets_schema": {
-                    "title": "SecretsModel",
                     "description": "Secrets data for YoutubeListVideosPiece",
-                    "type": "object",
                     "properties": {
                         "YOUTUBE_API_KEY": {
-                            "title": "Youtube Api Key",
+                            "default": null,
                             "description": "The Youtube Data API Key.",
+                            "title": "Youtube Api Key",
                             "type": "string"
                         }
-                    }
+                    },
+                    "title": "SecretsModel",
+                    "type": "object"
                 },
                 "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/YoutubeListVideosPiece"
-            },
-            "ImgurDeleteImagePiece": {
-                "name": "ImgurDeleteImagePiece",
+            }
+        }
+    },
+    "news_domino_pieces": {
+        "version": "0.1.0",
+        "url": "https://github.com/Tauffer-Consulting/news_domino_pieces",
+        "pieces": {
+            "NewsApiArticlesPiece": {
+                "name": "NewsApiArticlesPiece",
                 "dependency": {
                     "dockerfile": null,
                     "requirements_file": "requirements.txt"
                 },
                 "tags": [],
                 "style": {
-                    "node_label": "Imgur Image Delete Piece",
+                    "node_label": "NewsAPI Articles Piece",
                     "node_type": "default",
                     "node_style": {
                         "backgroundColor": "#ebebeb"
                     },
                     "useIcon": true,
-                    "icon_class_name": "uil:image-slash",
+                    "icon_class_name": "fluent:news-16-regular",
                     "iconStyle": {
                         "cursor": "pointer"
                     }
                 },
-                "description": "This Piece deletes an image from Imgur.",
-                "input_schema": {
-                    "title": "InputModel",
-                    "description": "ImgurDeleteImagePiece input model",
-                    "type": "object",
-                    "properties": {
-                        "image_delete_hash": {
-                            "title": "Image Delete Hash",
-                            "description": "The delete hash of the image you want to delete",
-                            "type": "string"
-                        }
+                "description": "This Piece uses the News API to retrieve full articles.\nReferences:\n- https://newsapi.org/\n- https://newsapi.org/docs/endpoints/everything",
+                "container_resources": {
+                    "requests": {
+                        "cpu": "100m",
+                        "memory": "128Mi"
                     },
-                    "required": [
-                        "image_delete_hash"
-                    ]
-                },
-                "output_schema": {
-                    "title": "OutputModel",
-                    "description": "ImgurDeleteImagePiece output model",
-                    "type": "object",
-                    "properties": {
-                        "deletion_status": {
-                            "title": "Deletion Status",
-                            "description": "The status of the deletion",
-                            "type": "integer"
-                        }
+                    "limits": {
+                        "cpu": "500m",
+                        "memory": "512Mi"
                     }
                 },
-                "secrets_schema": {
-                    "title": "SecretsModel",
-                    "description": "ImgurDeleteImagePiece secrets model",
-                    "type": "object",
+                "input_schema": {
+                    "$defs": {
+                        "LanguageType": {
+                            "enum": [
+                                "ar",
+                                "de",
+                                "en",
+                                "es",
+                                "fr",
+                                "he",
+                                "it",
+                                "nl",
+                                "no",
+                                "pt",
+                                "ru",
+                                "sv",
+                                "ud",
+                                "zh"
+                            ],
+                            "title": "LanguageType",
+                            "type": "string"
+                        },
+                        "SortByType": {
+                            "enum": [
+                                "relevancy",
+                                "popularity",
+                                "publishedAt"
+                            ],
+                            "title": "SortByType",
+                            "type": "string"
+                        }
+                    },
                     "properties": {
-                        "IMGUR_ACCESS_TOKEN": {
-                            "title": "Imgur Access Token",
-                            "description": "The user access token for the Imgur app",
+                        "query": {
+                            "default": "",
+                            "description": "Query to search for",
+                            "title": "Query",
+                            "type": "string"
+                        },
+                        "from_date": {
+                            "default": "2023-11-01",
+                            "description": "From date",
+                            "format": "date",
+                            "title": "From Date",
+                            "type": "string"
+                        },
+                        "to_date": {
+                            "default": "2023-11-06",
+                            "description": "To date",
+                            "format": "date",
+                            "title": "To Date",
+                            "type": "string"
+                        },
+                        "sort_by": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/SortByType"
+                                }
+                            ],
+                            "default": "relevancy",
+                            "description": "Sort by"
+                        },
+                        "language": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/LanguageType"
+                                }
+                            ],
+                            "default": "en",
+                            "description": "Language to filter by"
+                        },
+                        "number_of_results": {
+                            "default": 20,
+                            "description": "Number of results to return",
+                            "maximum": 100,
+                            "minimum": 1,
+                            "title": "Number Of Results",
+                            "type": "integer"
+                        }
+                    },
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "properties": {
+                        "message": {
+                            "description": "Output message to log",
+                            "title": "Message",
+                            "type": "string"
+                        },
+                        "articles": {
+                            "description": "List of articles",
+                            "items": {},
+                            "title": "Articles",
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "message",
+                        "articles"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": {
+                    "properties": {
+                        "NEWSAPI_API_KEY": {
+                            "description": "News API API Key",
+                            "title": "Newsapi Api Key",
                             "type": "string"
                         }
                     },
                     "required": [
-                        "IMGUR_ACCESS_TOKEN"
-                    ]
+                        "NEWSAPI_API_KEY"
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
                 },
-                "source_url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces/tree/main/pieces/ImgurDeleteImagePiece"
+                "source_url": "https://github.com/Tauffer-Consulting/news_domino_pieces/tree/main/pieces/NewsApiArticlesPiece"
+            },
+            "NewsApiHeadlinesPiece": {
+                "name": "NewsApiHeadlinesPiece",
+                "dependency": {
+                    "dockerfile": null,
+                    "requirements_file": "requirements.txt"
+                },
+                "tags": [],
+                "style": {
+                    "node_label": "NewsAPI Headlines Piece",
+                    "node_type": "default",
+                    "node_style": {
+                        "backgroundColor": "#ebebeb"
+                    },
+                    "useIcon": true,
+                    "icon_class_name": "fluent:news-16-regular",
+                    "iconStyle": {
+                        "cursor": "pointer"
+                    }
+                },
+                "description": "This Piece uses the News API to retrieve the top headlines from a given source or country.\nReferences:\n- https://newsapi.org/\n- https://newsapi.org/docs/endpoints/top-headlines",
+                "container_resources": {
+                    "requests": {
+                        "cpu": "100m",
+                        "memory": "128Mi"
+                    },
+                    "limits": {
+                        "cpu": "500m",
+                        "memory": "512Mi"
+                    }
+                },
+                "input_schema": {
+                    "$defs": {
+                        "CategoryType": {
+                            "enum": [
+                                "business",
+                                "entertainment",
+                                "general",
+                                "health",
+                                "science",
+                                "sports",
+                                "technology"
+                            ],
+                            "title": "CategoryType",
+                            "type": "string"
+                        },
+                        "CountryType": {
+                            "enum": [
+                                "all",
+                                "ae",
+                                "ar",
+                                "at",
+                                "au",
+                                "be",
+                                "bg",
+                                "br",
+                                "ca",
+                                "ch",
+                                "cn",
+                                "co",
+                                "cu",
+                                "cz",
+                                "de",
+                                "eg",
+                                "fr",
+                                "gb",
+                                "gr",
+                                "hk",
+                                "hu",
+                                "id",
+                                "ie",
+                                "il",
+                                "in",
+                                "it",
+                                "jp",
+                                "kr",
+                                "lt",
+                                "lv",
+                                "ma",
+                                "mx",
+                                "my",
+                                "ng",
+                                "nl",
+                                "no",
+                                "nz",
+                                "ph",
+                                "pl",
+                                "pt",
+                                "ro",
+                                "rs",
+                                "ru",
+                                "sa",
+                                "se",
+                                "sg",
+                                "si",
+                                "sk",
+                                "th",
+                                "tr",
+                                "tw",
+                                "ua",
+                                "us",
+                                "ve",
+                                "za"
+                            ],
+                            "title": "CountryType",
+                            "type": "string"
+                        },
+                        "LanguageType": {
+                            "enum": [
+                                "ar",
+                                "de",
+                                "en",
+                                "es",
+                                "fr",
+                                "he",
+                                "it",
+                                "nl",
+                                "no",
+                                "pt",
+                                "ru",
+                                "sv",
+                                "ud",
+                                "zh"
+                            ],
+                            "title": "LanguageType",
+                            "type": "string"
+                        }
+                    },
+                    "properties": {
+                        "query": {
+                            "default": "",
+                            "description": "Query to search for",
+                            "title": "Query",
+                            "type": "string"
+                        },
+                        "category": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/CategoryType"
+                                }
+                            ],
+                            "default": "general",
+                            "description": "Category to filter by"
+                        },
+                        "country": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/CountryType"
+                                }
+                            ],
+                            "default": "all",
+                            "description": "Country to filter by"
+                        },
+                        "language": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/$defs/LanguageType"
+                                }
+                            ],
+                            "default": "en",
+                            "description": "Language to filter by"
+                        },
+                        "number_of_results": {
+                            "default": 20,
+                            "description": "Number of results to return",
+                            "maximum": 100,
+                            "minimum": 1,
+                            "title": "Number Of Results",
+                            "type": "integer"
+                        }
+                    },
+                    "title": "InputModel",
+                    "type": "object"
+                },
+                "output_schema": {
+                    "properties": {
+                        "message": {
+                            "description": "Output message to log",
+                            "title": "Message",
+                            "type": "string"
+                        },
+                        "articles": {
+                            "description": "List of articles",
+                            "items": {},
+                            "title": "Articles",
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "message",
+                        "articles"
+                    ],
+                    "title": "OutputModel",
+                    "type": "object"
+                },
+                "secrets_schema": {
+                    "properties": {
+                        "NEWSAPI_API_KEY": {
+                            "description": "News API API Key",
+                            "title": "Newsapi Api Key",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "NEWSAPI_API_KEY"
+                    ],
+                    "title": "SecretsModel",
+                    "type": "object"
+                },
+                "source_url": "https://github.com/Tauffer-Consulting/news_domino_pieces/tree/main/pieces/NewsApiHeadlinesPiece"
             }
         }
     }
