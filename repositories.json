@@ -12,7 +12,11 @@
         "url": "https://github.com/Tauffer-Consulting/social_media_domino_pieces"
     },
     {
-        "name": "news_domino_pieces",
-        "url": "https://github.com/Tauffer-Consulting/news_domino_pieces"
-    } 
+        "name": "data_apis_domino_pieces",
+        "url": "https://github.com/Tauffer-Consulting/data_apis_domino_pieces"
+    },
+    {
+        "name": "ml-domino-pieces",
+        "https://github.com/Tauffer-Consulting/ml_domino_pieces"
+    }
 ]
