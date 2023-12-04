@@ -38,5 +38,11 @@
       "A workflow that uses OpenCV to create a cloud segmentation over a NASA earth image. To use it, you must use Shared Storage",
     "jsonFile": "cloud_segmentation_workflow.json",
     "levelTag": "Intermediate"
+  },
+  {
+    "title": "Youtube Transcript Local Model",
+    "description": "A workflow that uses a local whisper model with GPU access transcript a youtube video. To use it you must use Shared Storage",
+    "jsonFile": "youtube_transcript_local.json",
+    "levelTag": "Advanced"
   }
 ]
