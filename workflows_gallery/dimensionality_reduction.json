@@ -8,7 +8,7 @@
                 "dockerfile": null,
                 "requirements_file": "requirements_0.txt"
             },
-            "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.8.0-group0",
+            "source_image": "ghcr.io/tauffer-consulting/default_domino_pieces:0.8.1-group0",
             "input_schema": {
                 "$defs": {
                     "DatasetName": {
@@ -82,7 +82,7 @@
                 "dockerfile": null,
                 "requirements_file": "requirements_0.txt"
             },
-            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.1-group0",
+            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.2-group0",
             "input_schema": {
                 "properties": {
                     "data_path": {
@@ -152,7 +152,7 @@
                 "dockerfile": null,
                 "requirements_file": "requirements_0.txt"
             },
-            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.1-group0",
+            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.2-group0",
             "input_schema": {
                 "properties": {
                     "model_path": {
@@ -218,7 +218,7 @@
                 "dockerfile": null,
                 "requirements_file": "requirements_0.txt"
             },
-            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.1-group0",
+            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.2-group0",
             "input_schema": {
                 "properties": {
                     "data_path": {
@@ -283,7 +283,7 @@
                 "dockerfile": null,
                 "requirements_file": "requirements_0.txt"
             },
-            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.1-group0",
+            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.2-group0",
             "input_schema": {
                 "properties": {
                     "data_path": {

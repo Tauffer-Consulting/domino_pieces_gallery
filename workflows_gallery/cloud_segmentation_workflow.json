@@ -8,7 +8,7 @@
                 "dockerfile": null,
                 "requirements_file": "requirements.txt"
             },
-            "source_image": "ghcr.io/tauffer-consulting/data_apis_domino_pieces:0.2.1-group0",
+            "source_image": "ghcr.io/tauffer-consulting/data_apis_domino_pieces:0.2.3-group0",
             "input_schema": {
                 "$defs": {
                     "LocationTypes": {
@@ -99,7 +99,7 @@
                 "dockerfile": "Dockerfile_opencv",
                 "requirements_file": null
             },
-            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.1-group1",
+            "source_image": "ghcr.io/tauffer-consulting/ml-domino-pieces:0.2.2-group1",
             "input_schema": {
                 "$defs": {
                     "FilterNaem": {
