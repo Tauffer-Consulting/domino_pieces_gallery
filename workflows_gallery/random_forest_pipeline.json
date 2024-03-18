@@ -491,9 +491,9 @@
             "inputs": {
                 "data_path": {
                     "fromUpstream": true,
-                    "upstreamId": "TrainRando_7c224ef73cd0436ab4a7033dba4f9ed1",
-                    "upstreamArgument": "random_forest_model_path",
-                    "upstreamValue": "TrainRandomForestClassifierPiece (7c224ef7) - Random Forest Model Path",
+                    "upstreamId": "TrainTestS_9d3f64bf568143feaf79da7cc08768c0",
+                    "upstreamArgument": "test_data_path",
+                    "upstreamValue": "TrainTestSplitPiece (9d3f64bf) - Test Data Path",
                     "value": ""
                 },
                 "model_path": {
@@ -719,8 +719,8 @@
             "id": "2276_7c224ef7-3cd0-436a-b4a7-033dba4f9ed1",
             "type": "CustomNode",
             "position": {
-                "x": 388.7955801104973,
-                "y": -165.48104958080353
+                "x": 389.3860764412121,
+                "y": -164.89055325008877
             },
             "data": {
                 "name": "TrainRandomForestClassifierPiece",
@@ -744,8 +744,8 @@
             "height": 70,
             "selected": false,
             "positionAbsolute": {
-                "x": 388.7955801104973,
-                "y": -165.48104958080353
+                "x": 389.3860764412121,
+                "y": -164.89055325008877
             },
             "dragging": false
         },
