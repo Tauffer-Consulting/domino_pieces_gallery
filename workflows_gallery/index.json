@@ -5,14 +5,14 @@
       "Sends the summary of the last BBCNews youtube channel video to an emails list. You must configure Secrets and Local storage to use it.",
     "jsonFile": "youtube_summarizer.json",
     "levelTag": "Advanced",
-    "aviableOnDemo": true
+    "availableOnDemo": true
   },
   {
     "title": "Image Filter Workflow",
     "description": "A simple workflow that applies a filter to an image.",
     "jsonFile": "image_filter_workflow.json",
     "levelTag": "Beginner",
-    "aviableOnDemo": true
+    "availableOnDemo": true
   },
   {
     "title": "Dimensionality Reduction",
@@ -20,7 +20,7 @@
       "A workflow that applies dimensionality reduction to a dataset. To use it, you must use Shared Storage.",
     "jsonFile": "dimensionality_reduction.json",
     "levelTag": "Intermediate",
-    "aviableOnDemo": true
+    "availableOnDemo": true
   },
   {
     "title": "Random Forest Classifier",
@@ -28,7 +28,7 @@
       "A machine learning workflow to train a random forest and use it to predict a new data. To use it, you must use Shared Storage",
     "jsonFile": "random_forest_pipeline.json",
     "levelTag": "Intermediate",
-    "aviableOnDemo": true
+    "availableOnDemo": true
   },
   {
     "title": "Cloud Segmentation Workflow",
@@ -36,20 +36,20 @@
       "A workflow that uses OpenCV to create a cloud segmentation over a NASA earth image. To use it, you must use Shared Storage",
     "jsonFile": "cloud_segmentation_workflow.json",
     "levelTag": "Intermediate",
-    "aviableOnDemo": true
+    "availableOnDemo": true
   },
   {
     "title": "Youtube Transcript Local Model",
     "description": "A workflow that uses a local whisper model with GPU access transcript a youtube video. To use it you must use Shared Storage",
     "jsonFile": "youtube_transcript_local.json",
     "levelTag": "Advanced",
-    "aviableOnDemo": false
+    "availableOnDemo": false
   },
     {
       "title": "Instagram Post Automation Workflow",
       "description": "A workflow that creates a story with text and image and posts it to Instagram. To use it you must use Shared Storage and Secrets",
       "jsonFile": "instagram_integration_workflow.json",
       "levelTag": "Advanced",
-      "aviableOnDemo": false
+      "availableOnDemo": false
     }
 ]
